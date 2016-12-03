@@ -1,13 +1,13 @@
-set projDir "E:/matrixtest/work/planAhead"
+set projDir "D:/SUTD Term 4/50 .002 - LI01 Computation Structures/1D Project/50.002-1D/work/planAhead"
 set projName "matrixtest"
 set topName top
 set device xc6slx9-2tqg144
 if {[file exists "$projDir/$projName"]} { file delete -force "$projDir/$projName" }
 create_project $projName "$projDir/$projName" -part $device
 set_property design_mode RTL [get_filesets sources_1]
-set verilogSources [list "E:/matrixtest/work/verilog/mojo_top_0.v" "E:/matrixtest/work/verilog/reset_conditioner_1.v" "E:/matrixtest/work/verilog/timechange_2.v"]
+set verilogSources [list "D:/SUTD Term 4/50 .002 - LI01 Computation Structures/1D Project/50.002-1D/work/verilog/mojo_top_0.v" "D:/SUTD Term 4/50 .002 - LI01 Computation Structures/1D Project/50.002-1D/work/verilog/reset_conditioner_1.v" "D:/SUTD Term 4/50 .002 - LI01 Computation Structures/1D Project/50.002-1D/work/verilog/timechange_2.v"]
 import_files -fileset [get_filesets sources_1] -force -norecurse $verilogSources
-set ucfSources [list "E:/matrixtest/constraint/custom.ucf" "C:/Program\ Files/Mojo\ IDE/library/components/io_shield.ucf" "C:/Program\ Files/Mojo\ IDE/library/components/mojo.ucf"]
+set ucfSources [list "D:/SUTD\ Term\ 4/50\ .002\ -\ LI01\ Computation\ Structures/1D\ Project/50.002-1D/constraint/custom.ucf" "C:/Program\ Files/Mojo\ IDE/library/components/io_shield.ucf" "C:/Program\ Files/Mojo\ IDE/library/components/mojo.ucf"]
 import_files -fileset [get_filesets constrs_1] -force -norecurse $ucfSources
 set_property -name {steps.bitgen.args.More Options} -value {-g Binary:Yes -g Compress} -objects [get_runs impl_1]
 set_property steps.map.args.mt on [get_runs impl_1]

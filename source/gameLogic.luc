@@ -1,0 +1,168 @@
+module gameLogic (
+    input clk,  // clock
+    input rst,  // reset
+    input currentMap[16][16], // game map
+    input startPressed, // indicates if start button was pressed
+    input difficultyLevel, // indicates how often the map is updated
+    input p1ButtonInput, // Indicates the buttons pressed by p1
+    input p2ButtonInput, // Indicates the buttons pressed by p2
+    
+    output p1Lost, // is 1 when p1 loses, else 0
+    output p2Lost, // is 1 when p2 loses, else 0
+    output nextMap[16][16] // to be sent to the led Matrix display
+  ) {
+  
+    .clk(clk) {
+    .rst(rst){
+      fsm playing(.clk(clk), #INIT(NOT_PLAYING)) = {NOT_PLAYING, PLAYING};
+//      fsm gameState(.clk(clk), #INIT(IDLE)) = {IDLE, UU, UD, UL, UR, DU, DD, DL, DR, LU, LD, LL, LR, RU, RD, RL, RR};
+      fsm p1State(.clk(clk), #INIT(R)) = {U, D, L, R};
+      fsm p2State(.clk(clk), #INIT(L)) = {U, D, L, R};
+      dff p1PositionX; // Indicates [i][j] position of p1
+      dff p1PositionY; // Indicates [i][j] position of p1
+      dff p2PositionX; // Indicates [i][j] position of p1
+      dff p2PositionY; // Indicates [i][j] position of p2
+      dff timeToUpdateMap; // When this value reaches difficultyLevel, update the map
+      }
+    }
+
+  always {
+    p1Lost = 0;
+    p2Lost = 0;
+    if (playing.q == playing.NOT_PLAYING) {
+      if (startPressed == b0) { // if startPressed = b0, do nothing
+        nextMap = currentMap;
+      } else { // means startPressed = b1, initialize gameState
+          playing.d = playing.PLAYING;
+          p1State.d = p1State.R;
+          p2State.d = p2State.L;
+          timeToUpdateMap.d = 0; // set timeToUpdateMap equal to 0
+          nextMap = // initialize map. 1 indicates off, while 0 indicated on
+              {c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
+          // initialize player positions
+          p1PositionX.d = 7;
+          p1PositionY.d = 1;
+          p2PositionX.d = 7;
+          p2PositionY.d = 14;
+      }
+    } else { // means a game is in progress
+      if (timeToUpdateMap.q < difficultyLevel) {
+        timeToUpdateMap.d = timeToUpdateMap.q + 1; // increase timer
+        nextMap = currentMap; // nextMap doesn't change
+        // player input is as follows: 
+        // format is UP,DOWN,LEFT,RIGHT
+        // so b0100 means that the player pressed DOWN
+        case (p1ButtonInput) {
+          b1000:
+            p1State.d = p1State.U;
+          b0100:
+            p1State.d = p1State.D;
+          b0010:
+            p1State.d = p1State.L;
+          b0001:
+            p1State.d = p1State.R;
+        }
+        case (p2ButtonInput) {
+          b1000:
+            p2State.d = p2State.U;
+          b0100:
+            p2State.d = p2State.D;
+          b0010:
+            p2State.d = p2State.L;
+          b0001:
+            p2State.d = p2State.R;
+        }
+      } else if (timeToUpdateMap.q == difficultyLevel-1) { // update player positions and check boundaries
+        timeToUpdateMap.d = timeToUpdateMap.q + 1; // increase timer
+        nextMap = currentMap; // nextMap doesn't change
+        
+        // get the new position of p1 and check if they fail the boundary requirements
+        case (p1State.q) {
+          p1State.U:
+            p1PositionX.d = p1PositionX.q + 1;
+            if (p1PositionX.q >= 15) {
+              playing.d = playing.NOT_PLAYING;
+              p1Lost = 1;
+            }
+          p1State.D:
+            p1PositionX.d = p1PositionX.q - 1;
+            if (p1PositionX.q <= 0) {
+              playing.d = playing.NOT_PLAYING;
+              p1Lost = 1;
+            }
+          p1State.L:
+            p1PositionY.d = p1PositionY.q - 1;
+            if (p1PositionY.q <= 0) {
+              playing.d = playing.NOT_PLAYING;
+              p1Lost = 1;
+            }
+          p1State.R:
+            p1PositionY.d = p1PositionY.q + 1;
+            if (p1PositionY.q >= 15) {
+              playing.d = playing.NOT_PLAYING;
+              p1Lost = 1;
+            }
+        }
+        
+        // get the new position of p2 and check if they fail the boundary requirements
+        case (p2State.q) {
+          p2State.U:
+            p2PositionX.d = p2PositionX.q + 1;
+            if (p2PositionX.q >= 15) {
+              playing.d = playing.NOT_PLAYING;
+              p2Lost = 1;
+            }
+          p2State.D:
+            p2PositionX.d = p2PositionX.q - 1;
+            if (p2PositionX.q <= 0) {
+              playing.d = playing.NOT_PLAYING;
+              p2Lost = 1;
+            }
+          p2State.L:
+            p2PositionY.d = p2PositionY.q - 1;
+            if (p2PositionY.q <= 0) {
+              playing.d = playing.NOT_PLAYING;
+              p2Lost = 1;
+            }
+          p2State.R:
+            p2PositionY.d = p2PositionY.q + 1;
+            if (p2PositionY.q >= 15) {
+              playing.d = playing.NOT_PLAYING;
+              p2Lost = 1;
+            }
+        }
+      } else { // it is time to update the map
+        timeToUpdateMap.d = 0; // reset timeToUpdate to 0
+        
+        // check if the player's new position is a wall
+        if (currentMap[p1PositionY.q][p1PositionX.q] == 0) {
+          playing.d = playing.NOT_PLAYING;
+          p1Lost = 1;
+        }
+        if (currentMap[p2PositionY.q][p2PositionX.q] == 0) {
+          playing.d = playing.NOT_PLAYING;
+          p2Lost = 1;
+        }
+        // get the new new map
+        nextMap = currentMap;
+        nextMap[p1PositionY.q][p1PositionX.q] = 0;
+        nextMap[p2PositionY.q][p2PositionX.q] = 0;
+      }
+    }
+  }
+}
