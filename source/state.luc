@@ -1,18 +1,25 @@
 module state (
     input clk,  // clock
     input rst,  // reset
+    input p1ButtonInput,
+    input p2ButtonInput,  
     input startPressed, // indicates if start button was pressed
-    input p1Up,
-    input p1Down,
-    input p1Left,
-    input p1Right,
-    input p2Up,
-    input p2Down,
-    input p2Left,
-    input p2Right,
-    output p1,
-    output p2
+    input p1U,
+    input p1D,
+    input p1L,
+    input p1R,
+    input p2U,
+    input p2D,
+    input p2L,
+    input p2R,
+    input p1currState,
+    input p2currState,
     
+    output p1,
+    output p2,
+
+    output p1nextState,
+    output p2nextState,        
   ) {
     .clk(clk) {
     .rst(rst){
@@ -28,13 +35,94 @@ module state (
     p1 = b0000;
     p2 = b0000;
     if (startPressed == b1) { // if startPressed = b1, START GAME
-    
-      
-      
-      }        
-          
-          
-
+      case(p1ButtonInput == b1000){        
+        p1D:                 
+          p1nextState = b0100;
+          p1 = b0100;
+        p1L:
+          p1nextState = b0010;
+          p1 = b0010;
+        p1R: 
+          p1nextState = b0001;
+          p1 = b0001;
+      }  
+      case(p1ButtonInput == b0100){
+        p1U: 
+          p1nextState = b1000;
+          p1 = b1000;
+        p1L:
+          p1nextState = b0010;
+          p1 = b0010;
+        p1R: 
+          p1nextState = b0001;
+          p1 = b0001;
+      }  
+      case(p1ButtonInput == b0010){
+        p1U:
+          p1nextState = b1000;
+          p1 = b1000;
+        p1D: 
+          p1nextState = b0100;
+          p1 = b0100;
+        p1R: 
+          p1nextState = b0001;
+          p1 = b0001;
+      }  
+      case(p1ButtonInput == b0001){
+        p1U: 
+          p1nextState = b1000;
+          p1 = b1000;
+        p1D: 
+          p1nextState = b0100;
+          p1 = b0100;
+        p1L:
+          p1nextState = b0010;
+          p1 = b0010;
         
-  }
-}
+      }  
+      case(p2ButtonInput == b1000){       
+        p2D:
+          p2nextState = b0100;
+          p2 = b0100;
+        p2L:
+          p2nextState = b0010;  
+          p2 = b0010;
+        p2R:
+          p2nextState = b0001;  
+          p2 = b0001;
+      }
+      case(p2ButtonInput == b0010){
+        p2U:
+          p2nextState = b1000;  
+          p2 = b1000;
+        p2L:
+          p2nextState = b0010;  
+          p2 = b0010;
+        p2R:
+          p2nextState = b0001;  
+          p2 = b0001;
+      }
+      case(p2ButtonInput == b0010){
+        p2U:
+          p2nextState = b1000;  
+          p2 = b1000;
+        p2D:
+          p2nextState = b0100;  
+          p2 = b0100;
+        p2R:
+          p2nextState = b0001;  
+          p2 = b0001;
+      }
+      case(p2ButtonInput == b0001){
+        p2U:
+          p2nextState = b1000;  
+          p2 = b1000;
+        p2D:
+          p2nextState = b0100;  
+          p2 = b0100;
+        p2L:
+          p2nextState = b0010;  
+          p2 = b0010;       
+      }      
+    }
+} 
