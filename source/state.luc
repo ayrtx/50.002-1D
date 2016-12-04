@@ -1,0 +1,40 @@
+module state (
+    input clk,  // clock
+    input rst,  // reset
+    input startPressed, // indicates if start button was pressed
+    input p1Up,
+    input p1Down,
+    input p1Left,
+    input p1Right,
+    input p2Up,
+    input p2Down,
+    input p2Left,
+    input p2Right,
+    output p1,
+    output p2
+    
+  ) {
+    .clk(clk) {
+    .rst(rst){
+    //THIS PART I HAVE NO IDEA WHAT THIS IS. I JUST RIPPED OFF JONATHAN. IDK IF I NEED THIS.
+      fsm playing(.clk(clk), #INIT(NOT_PLAYING)) = {NOT_PLAYING, PLAYING};
+//      fsm gameState(.clk(clk), #INIT(IDLE)) = {IDLE, UU, UD, UL, UR, DU, DD, DL, DR, LU, LD, LL, LR, RU, RD, RL, RR};
+      fsm p1State(.clk(clk), #INIT(R)) = {U, D, L, R};
+      fsm p2State(.clk(clk), #INIT(L)) = {U, D, L, R};
+    //UNTIL HERE. IDK. SERIOUSLY:(  
+    }
+  }
+  always {
+    p1 = b0000;
+    p2 = b0000;
+    if (startPressed == b1) { // if startPressed = b1, START GAME
+    
+      
+      
+      }        
+          
+          
+
+        
+  }
+}
