@@ -87,7 +87,7 @@ Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 3 secs 
+Total REAL time at the beginning of Placer: 4 secs 
 Total CPU  time at the beginning of Placer: 3 secs 
 
 Phase 1.1  Initial Placement Analysis
@@ -105,39 +105,39 @@ Phase 3.31  Local Placement Optimization (Checksum:9e2b31e5) REAL time: 4 secs
 Phase 4.2  Initial Placement for Architecture Specific Features
 ...
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:b962b305) REAL time: 5 secs 
+(Checksum:b962b305) REAL time: 6 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:b962b305) REAL time: 5 secs 
+Phase 5.36  Local Placement Optimization (Checksum:b962b305) REAL time: 6 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:b962b305) REAL time: 5 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:b962b305) REAL time: 6 secs 
 
 Phase 7.3  Local Placement Optimization
 ...
-Phase 7.3  Local Placement Optimization (Checksum:b96311f6) REAL time: 5 secs 
+Phase 7.3  Local Placement Optimization (Checksum:b96311f6) REAL time: 6 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:b96311f6) REAL time: 5 secs 
+Phase 8.5  Local Placement Optimization (Checksum:b96311f6) REAL time: 6 secs 
 
 Phase 9.8  Global Placement
 ..
 ..
-Phase 9.8  Global Placement (Checksum:79bc9f83) REAL time: 5 secs 
+Phase 9.8  Global Placement (Checksum:79bc9f83) REAL time: 6 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:79bc9f83) REAL time: 5 secs 
+Phase 10.5  Local Placement Optimization (Checksum:79bc9f83) REAL time: 6 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:5125389b) REAL time: 5 secs 
+Phase 11.18  Placement Optimization (Checksum:5125389b) REAL time: 6 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:5125389b) REAL time: 5 secs 
+Phase 12.5  Local Placement Optimization (Checksum:5125389b) REAL time: 6 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:5125389b) REAL time: 5 secs 
+Phase 13.34  Placement Validation (Checksum:5125389b) REAL time: 6 secs 
 
-Total REAL time to Placer completion: 5 secs 
+Total REAL time to Placer completion: 6 secs 
 Total CPU  time to Placer completion: 5 secs 
 Running post-placement packing...
 Writing output files...
@@ -211,9 +211,9 @@ Specific Feature Utilization:
 
 Average Fanout of Non-Clock Nets:                2.72
 
-Peak Memory Usage:  379 MB
-Total REAL time to MAP completion:  6 secs 
-Total CPU time to MAP completion (all processors):   5 secs 
+Peak Memory Usage:  380 MB
+Total REAL time to MAP completion:  7 secs 
+Total CPU time to MAP completion (all processors):   6 secs 
 
 Mapping completed.
 See MAP report file "mojo_top_0.mrp" for details.
@@ -340,7 +340,7 @@ WARNING:Par:288 - The signal io_dip(9)_IBUF has no load.  PAR will not attempt t
 Starting Multi-threaded Router
 
 
-Phase  1  : 372 unrouted;      REAL time: 2 secs 
+Phase  1  : 372 unrouted;      REAL time: 3 secs 
 
 Phase  2  : 331 unrouted;      REAL time: 3 secs 
 
@@ -350,18 +350,18 @@ Phase  4  : 109 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REA
 
 Updating file: mojo_top_0_routed.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
+Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
-Total REAL time to Router completion: 3 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Total REAL time to Router completion: 4 secs 
 Total CPU time to Router completion (all processors): 3 secs 
 
 Generating "PAR" statistics.
@@ -407,8 +407,8 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 31 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 3 secs 
-Total CPU time to PAR completion (all processors): 3 secs 
+Total REAL time to PAR completion: 4 secs 
+Total CPU time to PAR completion (all processors): 4 secs 
 
 Peak Memory Usage:  343 MB
 
@@ -433,7 +433,7 @@ Loading device for application Rf_Device from file '6slx9.nph' in environment
 C:\Xilinx\14.7\ISE_DS\ISE\.
    "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 
-Analysis completed Sun Dec 04 01:22:30 2016
+Analysis completed Mon Dec 05 00:32:50 2016
 --------------------------------------------------------------------------------
 
 Generating Report ...

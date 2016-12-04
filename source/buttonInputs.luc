@@ -1,0 +1,58 @@
+module buttonInputs (
+    input clk,  // clock
+    input rst,  // reset
+    
+    // inputs are connected to the buttons the players have
+    input p1U,
+    input p1D,
+    input p1L,
+    input p1R,
+    input p2U,
+    input p2D,
+    input p2L,
+    input p2R,
+    
+    output p1ButtonInput, // to be fed into gameLogic
+    output p2ButtonInput  // to be fed into gameLogic 
+  ) {
+  
+  .clk(clk) {
+  .rst(rst){
+      // Stores each of the previous button states
+      dff p1Uprev;
+      dff p1Dprev;
+      dff p1Lprev;
+      dff p1Rprev;
+      dff p2Uprev;
+      dff p2Dprev;
+      dff p2Lprev;
+      dff p2Rprev;
+  }
+    
+  }
+  always {
+    // check for a change in each of the button states and output accordingly
+    if      (p1Uprev.q == 0 && p1U == 1) {p1ButtonInput = b1000;}
+    else if (p1Dprev.q == 0 && p1D == 1) {p1ButtonInput = b0100;}
+    else if (p1Lprev.q == 0 && p1L == 1) {p1ButtonInput = b0010;}
+    else if (p1Rprev.q == 0 && p1R == 1) {p1ButtonInput = b0001;}
+    else {p1ButtonInput = b0000;}
+
+    // check for a change in each of the button states and output accordingly
+    if      (p2Uprev.q == 0 && p2U == 1) {p2ButtonInput = b1000;}
+    else if (p2Dprev.q == 0 && p2D == 1) {p2ButtonInput = b0100;}
+    else if (p2Lprev.q == 0 && p2L == 1) {p2ButtonInput = b0010;}
+    else if (p2Rprev.q == 0 && p2R == 1) {p2ButtonInput = b0001;}
+    else {p2ButtonInput = b0000;}
+    
+    // update the button states
+    p1Uprev.d = p1U;
+    p1Dprev.d = p1D;
+    p1Lprev.d = p1L;
+    p1Rprev.d = p1R;
+    p2Uprev.d = p2U;
+    p2Dprev.d = p2D;
+    p2Lprev.d = p2L;
+    p2Rprev.d = p2R;
+  }
+} 

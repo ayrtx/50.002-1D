@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: mojo_top_0.prj
 
@@ -450,12 +450,12 @@ clk            |    4.831|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.95 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 8.16 secs
  
 --> 
 
-Total memory usage is 299848 kilobytes
+Total memory usage is 300360 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    9 (   0 filtered)
