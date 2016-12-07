@@ -15,4 +15,63 @@ NET "inputsToCircuit[6]" IOSTANDARD = LVTTL;
 NET "inputsToCircuit[7]" LOC = P87;
 NET "inputsToCircuit[7]" IOSTANDARD = LVTTL;
 
+NET "p1Ready" LOC = P51;
+NET "p1Ready" IOSTANDARD = LVTTL;
+NET "p1Ready" PULLUP;
+NET "p2Ready" LOC = P124;
+NET "p2Ready" IOSTANDARD = LVTTL;
+NET "p2Ready" PULLUP;
 
+NET "levelButton" LOC = P121;
+NET "levelButton" IOSTANDARD = LVTTL;
+NET "levelButton" PULLUP;
+
+NET "p1ButtonInput[0]" LOC = P41;
+NET "p1ButtonInput[0]" IOSTANDARD = LVTTL;
+NET "p1ButtonInput[0]" PULLUP;
+NET "p1ButtonInput[1]" LOC = P35;
+NET "p1ButtonInput[1]" IOSTANDARD = LVTTL;
+NET "p1ButtonInput[1]" PULLUP;
+NET "p1ButtonInput[2]" LOC = P33;
+NET "p1ButtonInput[2]" IOSTANDARD = LVTTL;
+NET "p1ButtonInput[2]" PULLUP;
+NET "p1ButtonInput[3]" LOC = P30;
+NET "p1ButtonInput[3]" IOSTANDARD = LVTTL;
+NET "p1ButtonInput[3]" PULLUP;
+
+NET "p2ButtonInput[0]" LOC = P127;
+NET "p2ButtonInput[0]" IOSTANDARD = LVTTL;
+NET "p2ButtonInput[0]" PULLUP;
+NET "p2ButtonInput[1]" LOC = P132;
+NET "p2ButtonInput[1]" IOSTANDARD = LVTTL;
+NET "p2ButtonInput[1]" PULLUP;
+NET "p2ButtonInput[2]" LOC = P134;
+NET "p2ButtonInput[2]" IOSTANDARD = LVTTL;
+NET "p2ButtonInput[2]" PULLUP;
+NET "p2ButtonInput[3]" LOC = P138;
+NET "p2ButtonInput[3]" IOSTANDARD = LVTTL;
+NET "p2ButtonInput[3]" PULLUP;
+
+NET "segmentPins[0]" LOC = P58;
+NET "segmentPins[0]" IOSTANDARD = LVTTL;
+NET "segmentPins[1]" LOC = P67;
+NET "segmentPins[1]" IOSTANDARD = LVTTL;
+NET "segmentPins[2]" LOC = P75;
+NET "segmentPins[2]" IOSTANDARD = LVTTL;
+NET "segmentPins[3]" LOC = P79;
+NET "segmentPins[3]" IOSTANDARD = LVTTL;
+NET "segmentPins[4]" LOC = P81;
+NET "segmentPins[4]" IOSTANDARD = LVTTL;
+NET "segmentPins[5]" LOC = P83;
+NET "segmentPins[5]" IOSTANDARD = LVTTL;
+NET "segmentPins[6]" LOC = P85;
+NET "segmentPins[6]" IOSTANDARD = LVTTL;
+
+NET "digitPins[0]" LOC = P88;
+NET "digitPins[0]" IOSTANDARD = LVTTL;
+NET "digitPins[1]" LOC = P93;
+NET "digitPins[1]" IOSTANDARD = LVTTL;
+NET "digitPins[2]" LOC = P95;
+NET "digitPins[2]" IOSTANDARD = LVTTL;
+NET "digitPins[3]" LOC = P98;
+NET "digitPins[3]" IOSTANDARD = LVTTL;

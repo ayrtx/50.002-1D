@@ -7,21 +7,16 @@
 module mojo_top_0 (
     input clk,
     input rst_n,
-    output reg [7:0] led,
-    input cclk,
     output reg spi_miso,
-    input spi_ss,
-    input spi_mosi,
-    input spi_sck,
     output reg [3:0] spi_channel,
-    input avr_tx,
     output reg avr_rx,
-    input avr_rx_busy,
-    output reg [23:0] io_led,
-    output reg [7:0] io_seg,
-    output reg [3:0] io_sel,
-    input [4:0] io_button,
-    input [23:0] io_dip,
+    input p1Ready,
+    input p2Ready,
+    input levelButton,
+    input [3:0] p1ButtonInput,
+    input [3:0] p2ButtonInput,
+    output reg [6:0] segmentPins,
+    output reg [3:0] digitPins,
     output reg [7:0] inputsToCircuit
   );
   
@@ -38,28 +33,120 @@ module mojo_top_0 (
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
   );
-  wire [8-1:0] M_timechange_inputsToCircuit;
-  reg [256-1:0] M_timechange_ledArray;
-  timechange_2 timechange (
+  wire [8-1:0] M_matrixDisplay_inputsToCircuit;
+  reg [256-1:0] M_matrixDisplay_ledArray;
+  matrixDisplay_2 matrixDisplay (
     .clk(clk),
     .rst(rst),
-    .ledArray(M_timechange_ledArray),
-    .inputsToCircuit(M_timechange_inputsToCircuit)
+    .ledArray(M_matrixDisplay_ledArray),
+    .inputsToCircuit(M_matrixDisplay_inputsToCircuit)
   );
+  wire [256-1:0] M_gameLogic_nextMap;
+  wire [4-1:0] M_gameLogic_p1ScoreOut;
+  wire [4-1:0] M_gameLogic_p2ScoreOut;
+  wire [1-1:0] M_gameLogic_p1Lost;
+  wire [1-1:0] M_gameLogic_p2Lost;
+  reg [256-1:0] M_gameLogic_currentMap;
+  reg [4-1:0] M_gameLogic_p1ButtonInput;
+  reg [4-1:0] M_gameLogic_p2ButtonInput;
+  reg [1-1:0] M_gameLogic_p1Ready;
+  reg [1-1:0] M_gameLogic_p2Ready;
+  reg [1-1:0] M_gameLogic_levelButton;
+  reg [4-1:0] M_gameLogic_p1ScoreIn;
+  reg [4-1:0] M_gameLogic_p2ScoreIn;
+  gameLogic_3 gameLogic (
+    .clk(clk),
+    .rst(rst),
+    .currentMap(M_gameLogic_currentMap),
+    .p1ButtonInput(M_gameLogic_p1ButtonInput),
+    .p2ButtonInput(M_gameLogic_p2ButtonInput),
+    .p1Ready(M_gameLogic_p1Ready),
+    .p2Ready(M_gameLogic_p2Ready),
+    .levelButton(M_gameLogic_levelButton),
+    .p1ScoreIn(M_gameLogic_p1ScoreIn),
+    .p2ScoreIn(M_gameLogic_p2ScoreIn),
+    .nextMap(M_gameLogic_nextMap),
+    .p1ScoreOut(M_gameLogic_p1ScoreOut),
+    .p2ScoreOut(M_gameLogic_p2ScoreOut),
+    .p1Lost(M_gameLogic_p1Lost),
+    .p2Lost(M_gameLogic_p2Lost)
+  );
+  wire [4-1:0] M_numbersDisplayMain_digitPins;
+  wire [7-1:0] M_numbersDisplayMain_segmentPins;
+  reg [4-1:0] M_numbersDisplayMain_p1Score;
+  reg [4-1:0] M_numbersDisplayMain_p2Score;
+  numbersDisplayMain_4 numbersDisplayMain (
+    .clk(clk),
+    .rst(rst),
+    .p1Score(M_numbersDisplayMain_p1Score),
+    .p2Score(M_numbersDisplayMain_p2Score),
+    .digitPins(M_numbersDisplayMain_digitPins),
+    .segmentPins(M_numbersDisplayMain_segmentPins)
+  );
+  reg [0:0] M_first_d, M_first_q = 1'h0;
+  reg [255:0] M_patternNew_d, M_patternNew_q = 1'h0;
+  reg [3:0] M_p1Score_d, M_p1Score_q = 1'h0;
+  reg [3:0] M_p2Score_d, M_p2Score_q = 1'h0;
   
   always @* begin
+    M_p1Score_d = M_p1Score_q;
+    M_p2Score_d = M_p2Score_q;
+    M_first_d = M_first_q;
+    M_patternNew_d = M_patternNew_q;
+    
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
-    led = 8'h00;
     spi_miso = 1'bz;
     spi_channel = 4'bzzzz;
     avr_rx = 1'bz;
-    io_led = 24'h000000;
-    io_seg = 8'hff;
-    io_sel = 4'hf;
     inputsToCircuit = 8'h00;
-    pattern = 256'h207c60822002207c2080208070fe00007c0c821402243c44028482fe7c040000;
-    M_timechange_ledArray = pattern;
-    inputsToCircuit = M_timechange_inputsToCircuit;
+    pattern = 256'hffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
+    if (M_first_q == 1'h0) begin
+      M_gameLogic_levelButton = levelButton;
+      M_gameLogic_p1ButtonInput = 4'hf;
+      M_gameLogic_p2ButtonInput = 4'hf;
+      M_gameLogic_p1Ready = p1Ready;
+      M_gameLogic_p2Ready = p2Ready;
+      M_gameLogic_currentMap = pattern;
+      M_patternNew_d = M_gameLogic_nextMap;
+      M_gameLogic_p1ScoreIn = 4'h0;
+      M_gameLogic_p2ScoreIn = 4'h0;
+      M_p1Score_d = M_gameLogic_p1ScoreOut;
+      M_p2Score_d = M_gameLogic_p2ScoreOut;
+      M_first_d = 1'h1;
+    end else begin
+      M_gameLogic_levelButton = levelButton;
+      M_gameLogic_p1ButtonInput = p1ButtonInput;
+      M_gameLogic_p2ButtonInput = p2ButtonInput;
+      M_gameLogic_p1Ready = p1Ready;
+      M_gameLogic_p2Ready = p2Ready;
+      M_gameLogic_currentMap = M_patternNew_q;
+      M_patternNew_d = M_gameLogic_nextMap;
+      M_gameLogic_p1ScoreIn = M_p1Score_q;
+      M_gameLogic_p2ScoreIn = M_p2Score_q;
+      M_p1Score_d = M_gameLogic_p1ScoreOut;
+      M_p2Score_d = M_gameLogic_p2ScoreOut;
+    end
+    M_matrixDisplay_ledArray = M_patternNew_q;
+    inputsToCircuit = M_matrixDisplay_inputsToCircuit;
+    M_numbersDisplayMain_p1Score = M_p1Score_q;
+    M_numbersDisplayMain_p2Score = M_p2Score_q;
+    segmentPins = M_numbersDisplayMain_segmentPins;
+    digitPins = M_numbersDisplayMain_digitPins;
   end
+  
+  always @(posedge clk) begin
+    if (rst == 1'b1) begin
+      M_first_q <= 1'h0;
+      M_patternNew_q <= 1'h0;
+      M_p1Score_q <= 1'h0;
+      M_p2Score_q <= 1'h0;
+    end else begin
+      M_first_q <= M_first_d;
+      M_patternNew_q <= M_patternNew_d;
+      M_p1Score_q <= M_p1Score_d;
+      M_p2Score_q <= M_p2Score_d;
+    end
+  end
+  
 endmodule
