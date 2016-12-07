@@ -1,75 +1,113 @@
 module mojo_top (
     input clk,              // 50MHz clock
     input rst_n,            // reset button (active low)
-    output led [8],         // 8 user controllable LEDs
-    input cclk,             // configuration clock, AVR ready when high
+    //output led [8],         // 8 user controllable LEDs
+    //input cclk,             // configuration clock, AVR ready when high
     output spi_miso,        // AVR SPI MISO
-    input spi_ss,           // AVR SPI Slave Select
-    input spi_mosi,         // AVR SPI MOSI
-    input spi_sck,          // AVR SPI Clock
+    //input spi_ss,           // AVR SPI Slave Select
+    //input spi_mosi,         // AVR SPI MOSI
+    //input spi_sck,          // AVR SPI Clock
     output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
-    input avr_tx,           // AVR TX (FPGA RX)
+    //input avr_tx,           // AVR TX (FPGA RX)
     output avr_rx,          // AVR RX (FPGA TX)
-    input avr_rx_busy,      // AVR RX buffer full
-    output io_led [3][8],   // LEDs on IO Shield
-    output io_seg [8],      // 7-segment LEDs on IO Shield
-    output io_sel [4],      // Digit select on IO Shield
-    input io_button [5],    // 5 buttons on IO Shield
-    input io_dip [3][8],     // DIP switches on IO Shield
+    //input avr_rx_busy,      // AVR RX buffer full
+    //output io_led [3][8],   // LEDs on IO Shield
+    //output io_seg [8],      // 7-segment LEDs on IO Shield
+    //output io_sel [4],      // Digit select on IO Shield
+    //input io_button [5],    // 5 buttons on IO Shield
+    //input io_dip [3][8],     // DIP switches on IO Shield
+    input p1Ready,
+    input p2Ready,
+    input levelButton,
+    input p1ButtonInput[4], // Indicates the buttons pressed by p1
+    input p2ButtonInput[4], // Indicates the buttons pressed by p2
+    output segmentPins[7],
+    output digitPins[4],
     output inputsToCircuit[8]
   ) {
   
   sig rst;                  // reset signal
   sig pattern[16][16];
-  
+  //sig switch;
   .clk(clk) {
     reset_conditioner reset_cond;
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     .rst(rst){
-      timechange timechange;
-
+      matrixDisplay matrixDisplay;
+      gameLogic gameLogic;
+      numbersDisplayMain numbersDisplayMain;
+      dff first[1];
+      dff patternNew[16][16];
+      dff p1Score[4];
+      dff p2Score[4];
       }
   }
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
+    //switch = b1;
     
-    led = 8h00;             // turn LEDs off
+    //led = 8h00;             // turn LEDs off
     spi_miso = bz;          // not using SPI
     spi_channel = bzzzz;    // not using flags
     avr_rx = bz;            // not using serial port
     
-    io_led = 3x{{8h00}};    // turn LEDs off
-    io_seg = 8hff;          // turn segments off
-    io_sel = 4hf;           // select no digits
+    //io_led = 3x{{8h00}};    // turn LEDs off
+    //io_seg = 8hff;          // turn segments off
+    //io_sel = 4hf;           // select no digits
     inputsToCircuit = c{0,0,0,0,0,0,0,0};
     // In the pattern, 0 is lighted, 1 is off
-    pattern = {c{0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,0},
-               c{0,1,1,0,0,0,0,0,1,0,0,0,0,0,1,0},
-               c{0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0},
-               c{0,0,1,0,0,0,0,0,0,1,1,1,1,1,0,0},
-               c{0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0},
-               c{0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0},
-               c{0,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0},
-               c{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-               c{0,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0},
-               c{1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0},
-               c{0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0},
-               c{0,0,1,1,1,1,0,0,0,1,0,0,0,1,0,0},
-               c{0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-               c{1,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0},
-               c{0,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0},
-               c{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
-    timechange.ledArray = pattern; // display(pattern)
-    inputsToCircuit = timechange.inputsToCircuit;
-    //latch: 87 inputsToCircuit[7]
-    //clock: 84 inputsToCircuit[6]
-    //data: 82 inputsToCircuit[5]
-    //g: 80 inputsToCircuit[4]
-    //a: 78 inputsToCircuit[3]
-    //b: 74 inputsToCircuit[2]
-    //c: 66 inputsToCircuit[1]
-    //d: 57 inputsToCircuit[0]
+    pattern = // initialize map. 1 indicates off, while 0 indicated on
+              {c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
+    if (first.q == b0){
+    gameLogic.levelButton = levelButton;
+    gameLogic.p1ButtonInput = b1111;
+    gameLogic.p2ButtonInput = b1111;
+    gameLogic.p1Ready = p1Ready;
+    gameLogic.p2Ready = p2Ready;
+    gameLogic.currentMap = pattern;
+    patternNew.d = gameLogic.nextMap;
+    gameLogic.p1ScoreIn = b0000;
+    gameLogic.p2ScoreIn = b0000;
+    p1Score.d = gameLogic.p1ScoreOut;
+    p2Score.d = gameLogic.p2ScoreOut;
+    first.d = b1;
+    }
+    else{
+    gameLogic.levelButton = levelButton;
+    gameLogic.p1ButtonInput = p1ButtonInput;
+    gameLogic.p2ButtonInput = p2ButtonInput;
+    gameLogic.p1Ready = p1Ready;
+    gameLogic.p2Ready = p2Ready;
+    gameLogic.currentMap = patternNew.q;
+    patternNew.d = gameLogic.nextMap;
+    gameLogic.p1ScoreIn = p1Score.q;
+    gameLogic.p2ScoreIn = p2Score.q;
+    p1Score.d = gameLogic.p1ScoreOut;
+    p2Score.d = gameLogic.p2ScoreOut;}
+      
+    matrixDisplay.ledArray = patternNew.q;
+    inputsToCircuit = matrixDisplay.inputsToCircuit;
+    numbersDisplayMain.p1Score = p1Score.q;
+    numbersDisplayMain.p2Score = p2Score.q;
+    segmentPins = numbersDisplayMain.segmentPins;
+    digitPins = numbersDisplayMain.digitPins;
+    
   }}

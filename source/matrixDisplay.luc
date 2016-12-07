@@ -1,11 +1,10 @@
-module timechange (
+module matrixDisplay (
     input clk,    // clock
     input rst,    // reset
     input ledArray[16][16],
     output inputsToCircuit [8]  // declares an output currentCounter with 26 bits
   ) {
-  
-  .clk(clk) {
+    .clk(clk) {
     .rst(rst){
       fsm state(.clk(clk), #INIT(START)) = {ONE,TWO,THREE,START};
       dff i[4];
@@ -15,7 +14,6 @@ module timechange (
       }
     }
 
-
   always {
     inputsToCircuit = c{0,0,0,0,0,0,0,0};
     case(state.q){
@@ -24,12 +22,12 @@ module timechange (
         inputsToCircuit[7] = 0;
         inputsToCircuit[5] = 0;
         inputsToCircuit[6] = clk - 1;
-        if (j.q == 0){
+        if (j.q == 15){
           state.d = state.TWO;
-          j.d = 15;
+          j.d = 0;
           }
         else{
-          j.d = j.q - 1;
+          j.d = j.q + 1;
           }
 
       state.TWO:
@@ -41,12 +39,12 @@ module timechange (
         inputsToCircuit[4] = 1;
         inputsToCircuit[5] = ledArray[i.q][j.q];
         inputsToCircuit[6] = clk - 1;
-        if (j.q == 0){
+        if (j.q == 15){
           state.d = state.THREE;
-          j.d = 15;
+          j.d = 0;
           }
         else{
-          j.d = j.q - 1;
+          j.d = j.q + 1;
           }
 
      
@@ -62,7 +60,7 @@ module timechange (
 
         if (time.q == b0110000110101000){
           time.d = 0;
-          if (i.q == 0){
+          if (k.q == 15){
             state.d = state.START;
             }
          else{
@@ -73,8 +71,8 @@ module timechange (
         }
         
       state.START:
+        j.d = 0;
         i.d = 15;
-        j.d = 15;
         k.d = 0;
         time.d = 0;
         state.d = state.ONE;

@@ -1,0 +1,67 @@
+module numbersDisplayMain (
+    input clk,  // clock
+    input rst,  // reset
+    input p1Score[4],
+    input p2Score[4],
+    output digitPins[4],
+    output segmentPins[7]
+  ) {.clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    .rst(rst){
+      dff timer[16];
+      dff digit[2];
+      }
+  }
+  numbersDisplay numbersDisplay;
+
+  always {
+    numbersDisplay.score = b1111;
+    digitPins = b0000;
+    segmentPins = b0000000;
+    if (digit.q == b00){
+      timer.d = timer.q + 1;
+      digitPins = b1111;
+      digitPins[0] = b0;
+      numbersDisplay.score = p1Score;
+      segmentPins = numbersDisplay.digitDisplay;
+      if (timer.q == b0110000110101000){
+        timer.d = b0000000000000000;
+        digit.d = digit.q + b1;
+      }
+    }
+    else if (digit.q == b01){
+      timer.d = timer.q + b1;
+      digitPins = b1111;
+      digitPins[1] = b0;
+      numbersDisplay.score = b1111;
+      segmentPins = numbersDisplay.digitDisplay;
+      if (timer.q == b0110000110101000){
+        timer.d = b0000000000000000;
+        digit.d = digit.q + b1;
+      }
+    }
+    else if (digit.q == b10){
+      timer.d = timer.q + b1;
+      digitPins = b1111;
+      digitPins[2] = b0;
+      numbersDisplay.score = b1111;
+      segmentPins = numbersDisplay.digitDisplay;
+      if (timer.q == b0110000110101000){
+        timer.d = b0000000000000000;
+        digit.d = digit.q + b1;
+      }
+    }
+    else if (digit.q == b11){
+      timer.d = timer.q + 1;
+      digitPins = b1111;
+      digitPins[3] = b0;
+      numbersDisplay.score = p2Score;
+      segmentPins = numbersDisplay.digitDisplay;
+      if (timer.q == b0110000110101000){
+        timer.d = b0000000000000000;
+        digit.d = digit.q + b1;
+      }
+    }
+  }
+}

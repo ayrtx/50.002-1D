@@ -1,0 +1,23 @@
+module numbersDisplay (
+    input score[4],
+    output digitDisplay[7]
+  ) {
+
+  always {
+    digitDisplay = b0000000;
+    case(score){
+      b0000: digitDisplay = b1110111;
+      b0001: digitDisplay = b1000100;
+      b0010: digitDisplay = b0111110;
+      b0011: digitDisplay = b1101110;
+      b0100: digitDisplay = b1001101;
+      b0101: digitDisplay = b1101011;
+      b0110: digitDisplay = b1111011;
+      b0111: digitDisplay = b1000110;
+      b1000: digitDisplay = b1111111;
+      b1001: digitDisplay = b1101111;
+      b1110: digitDisplay = b0000000;
+      b1111: digitDisplay = b0001000;
+    }
+}
+}
