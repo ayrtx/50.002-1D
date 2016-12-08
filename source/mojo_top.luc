@@ -23,7 +23,8 @@ module mojo_top (
     input p2ButtonInput[4], // Indicates the buttons pressed by p2
     output segmentPins[7],
     output digitPins[4],
-    output inputsToCircuit[8] // output to physical led matrix
+    output inputsToCircuit[8], // output to physical led matrix
+    output levelLED[3] // output to LED to display current level
   ) {
   
   sig rst;                  // reset signal
@@ -88,6 +89,7 @@ module mojo_top (
       gameLogic.p2ScoreIn = b0000;
       p1Score.d = gameLogic.p1ScoreOut;
       p2Score.d = gameLogic.p2ScoreOut;
+      levelLED = b001;
       first.d = b1; // Immediately change to the next state. 
     }
     else { // Set values to those of the gameLogic
@@ -102,6 +104,7 @@ module mojo_top (
       gameLogic.p2ScoreIn = p2Score.q;
       p1Score.d = gameLogic.p1ScoreOut;
       p2Score.d = gameLogic.p2ScoreOut;
+      levelLED = gameLogic.levelLED;
     }
     
     matrixDisplay.ledArray = patternNew.q; // send map to be processed by matrixDisplay
