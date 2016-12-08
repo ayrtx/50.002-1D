@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module numbersDisplay_6 (
+module numbersDisplay_13 (
     input [3:0] score,
     output reg [6:0] digitDisplay
   );

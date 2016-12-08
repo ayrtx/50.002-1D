@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module levelButtonState_5 (
+module levelButtonState_12 (
     input clk,
     input rst,
     input button,
@@ -15,14 +15,14 @@ module levelButtonState_5 (
   
   wire [1-1:0] M_edge_detector_out;
   reg [1-1:0] M_edge_detector_in;
-  edge_detector_7 edge_detector (
+  edge_detector_14 edge_detector (
     .clk(clk),
     .in(M_edge_detector_in),
     .out(M_edge_detector_out)
   );
   wire [1-1:0] M_button_cond_out;
   reg [1-1:0] M_button_cond_in;
-  button_conditioner_8 button_cond (
+  button_conditioner_15 button_cond (
     .clk(clk),
     .in(M_button_cond_in),
     .out(M_button_cond_out)

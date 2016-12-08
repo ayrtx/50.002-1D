@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module numbersDisplayMain_4 (
+module numbersDisplayMain_5 (
     input clk,
     input rst,
     input [3:0] p1Score,
@@ -20,7 +20,7 @@ module numbersDisplayMain_4 (
   
   wire [7-1:0] M_numbersDisplay_digitDisplay;
   reg [4-1:0] M_numbersDisplay_score;
-  numbersDisplay_6 numbersDisplay (
+  numbersDisplay_13 numbersDisplay (
     .score(M_numbersDisplay_score),
     .digitDisplay(M_numbersDisplay_digitDisplay)
   );

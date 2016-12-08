@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Wed Dec 07 21:46:51 2016
+// Written by: Map P.20131013 on Fri Dec 09 05:17:50 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -27,6 +27,9 @@ COMP "inputsToCircuit[4]" LOCATE = SITE "P80" LEVEL 1;
 COMP "inputsToCircuit[5]" LOCATE = SITE "P82" LEVEL 1;
 COMP "inputsToCircuit[6]" LOCATE = SITE "P84" LEVEL 1;
 COMP "inputsToCircuit[7]" LOCATE = SITE "P87" LEVEL 1;
+COMP "levelLED[0]" LOCATE = SITE "P120" LEVEL 1;
+COMP "levelLED[1]" LOCATE = SITE "P118" LEVEL 1;
+COMP "levelLED[2]" LOCATE = SITE "P116" LEVEL 1;
 COMP "levelButton" LOCATE = SITE "P121" LEVEL 1;
 COMP "digitPins[0]" LOCATE = SITE "P88" LEVEL 1;
 COMP "digitPins[1]" LOCATE = SITE "P93" LEVEL 1;
@@ -50,41 +53,45 @@ TIMEGRP clk = BEL "M_patternNew_q_0" BEL "M_patternNew_q_1" BEL
         BEL "M_patternNew_q_24" BEL "M_patternNew_q_25" BEL
         "M_patternNew_q_30" BEL "M_patternNew_q_26" BEL "M_patternNew_q_31"
         BEL "M_patternNew_q_27" BEL "M_patternNew_q_32" BEL
-        "M_patternNew_q_28" BEL "M_patternNew_q_33" BEL "M_patternNew_q_29"
-        BEL "M_patternNew_q_34" BEL "M_patternNew_q_35" BEL
-        "M_patternNew_q_40" BEL "M_patternNew_q_36" BEL "M_patternNew_q_41"
-        BEL "M_patternNew_q_37" BEL "M_patternNew_q_42" BEL
-        "M_patternNew_q_38" BEL "M_patternNew_q_43" BEL "M_patternNew_q_39"
-        BEL "M_patternNew_q_44" BEL "M_patternNew_q_45" BEL
-        "M_patternNew_q_50" BEL "M_patternNew_q_46" BEL "M_patternNew_q_51"
-        BEL "M_patternNew_q_47" BEL "M_patternNew_q_52" BEL
-        "M_patternNew_q_48" BEL "M_patternNew_q_53" BEL "M_patternNew_q_49"
-        BEL "M_patternNew_q_54" BEL "M_patternNew_q_55" BEL
-        "M_patternNew_q_60" BEL "M_patternNew_q_56" BEL "M_patternNew_q_61"
-        BEL "M_patternNew_q_57" BEL "M_patternNew_q_62" BEL
-        "M_patternNew_q_58" BEL "M_patternNew_q_63" BEL "M_patternNew_q_59"
-        BEL "M_patternNew_q_64" BEL "M_patternNew_q_65" BEL
-        "M_patternNew_q_70" BEL "M_patternNew_q_66" BEL "M_patternNew_q_71"
-        BEL "M_patternNew_q_67" BEL "M_patternNew_q_72" BEL "M_p2Score_q_0"
-        BEL "M_patternNew_q_73" BEL "M_patternNew_q_68" BEL "M_p2Score_q_1"
-        BEL "M_patternNew_q_74" BEL "M_patternNew_q_69" BEL "M_p2Score_q_2"
-        BEL "M_patternNew_q_80" BEL "M_patternNew_q_75" BEL "M_p2Score_q_3"
-        BEL "M_patternNew_q_81" BEL "M_patternNew_q_76" BEL
-        "M_patternNew_q_77" BEL "M_patternNew_q_82" BEL "M_patternNew_q_78"
-        BEL "M_patternNew_q_83" BEL "M_patternNew_q_79" BEL
-        "M_patternNew_q_84" BEL "M_patternNew_q_85" BEL "M_patternNew_q_90"
-        BEL "M_patternNew_q_86" BEL "M_patternNew_q_91" BEL
-        "M_patternNew_q_87" BEL "M_patternNew_q_92" BEL "M_patternNew_q_88"
-        BEL "M_patternNew_q_93" BEL "M_patternNew_q_89" BEL
-        "M_patternNew_q_94" BEL "M_patternNew_q_95" BEL "M_patternNew_q_96"
-        BEL "M_patternNew_q_97" BEL "M_patternNew_q_98" BEL
-        "M_patternNew_q_99" BEL "gameLogic/M_levelButtonStatePrev_q" BEL
+        "M_patternNew_q_28" BEL "scoreMem/M_curp2Score_q_3" BEL
+        "scoreMem/M_curp2Score_q_2" BEL "scoreMem/M_curp2Score_q_1" BEL
+        "scoreMem/M_curp1Score_q_3" BEL "scoreMem/M_curp1Score_q_2" BEL
+        "scoreMem/M_curp1Score_q_1" BEL "scoreMem/M_curp1Score_q_0" BEL
+        "scoreMem/M_curp2Score_q_0" BEL "M_patternNew_q_33" BEL
+        "M_patternNew_q_29" BEL "M_patternNew_q_34" BEL "M_patternNew_q_35"
+        BEL "M_patternNew_q_40" BEL "M_patternNew_q_36" BEL
+        "M_patternNew_q_41" BEL "M_patternNew_q_37" BEL "M_patternNew_q_42"
+        BEL "M_patternNew_q_38" BEL "M_patternNew_q_43" BEL
+        "M_patternNew_q_39" BEL "M_patternNew_q_44" BEL "M_patternNew_q_45"
+        BEL "M_patternNew_q_50" BEL "M_patternNew_q_46" BEL
+        "M_patternNew_q_51" BEL "M_patternNew_q_47" BEL "M_patternNew_q_52"
+        BEL "M_patternNew_q_48" BEL "M_patternNew_q_53" BEL
+        "M_patternNew_q_49" BEL "M_patternNew_q_54" BEL "M_patternNew_q_55"
+        BEL "M_patternNew_q_60" BEL "M_patternNew_q_56" BEL
+        "M_patternNew_q_61" BEL "M_patternNew_q_57" BEL "M_patternNew_q_62"
+        BEL "M_patternNew_q_58" BEL "M_patternNew_q_63" BEL
+        "M_patternNew_q_59" BEL "M_patternNew_q_64" BEL "M_patternNew_q_65"
+        BEL "M_patternNew_q_70" BEL "M_patternNew_q_66" BEL
+        "M_patternNew_q_71" BEL "M_patternNew_q_67" BEL "M_patternNew_q_72"
+        BEL "M_patternNew_q_68" BEL "M_patternNew_q_73" BEL
+        "M_patternNew_q_69" BEL "M_patternNew_q_74" BEL "M_patternNew_q_75"
+        BEL "M_patternNew_q_80" BEL "M_patternNew_q_76" BEL
+        "M_patternNew_q_81" BEL "M_patternNew_q_77" BEL "M_patternNew_q_82"
+        BEL "M_patternNew_q_78" BEL "M_patternNew_q_83" BEL
+        "M_patternNew_q_79" BEL "M_patternNew_q_84" BEL "M_patternNew_q_85"
+        BEL "M_patternNew_q_90" BEL "M_patternNew_q_86" BEL
+        "M_patternNew_q_91" BEL "M_patternNew_q_87" BEL "M_patternNew_q_92"
+        BEL "M_patternNew_q_88" BEL "M_patternNew_q_93" BEL
+        "M_patternNew_q_89" BEL "M_patternNew_q_94" BEL "M_patternNew_q_95"
+        BEL "M_patternNew_q_96" BEL "M_patternNew_q_97" BEL
+        "M_patternNew_q_98" BEL "M_patternNew_q_99" BEL
         "gameLogic/M_level_q_FSM_FFd1" BEL "gameLogic/M_level_q_FSM_FFd2" BEL
         "gameLogic/M_p2PositionY_q_0" BEL "gameLogic/M_p2PositionY_q_1" BEL
         "gameLogic/M_p2PositionY_q_2" BEL "gameLogic/M_p2PositionY_q_3" BEL
         "gameLogic/M_p1PositionY_q_0" BEL "gameLogic/M_p1PositionY_q_1" BEL
         "gameLogic/M_p1PositionY_q_2" BEL "gameLogic/M_p1PositionY_q_3" BEL
-        "gameLogic/M_playing_q" BEL
+        "gameLogic/M_playing_q" BEL "gameLogic/M_p1State_q_FSM_FFd1" BEL
+        "gameLogic/M_p1State_q_FSM_FFd2" BEL
         "gameLogic/levelButtonState/edge_detector/M_last_q" BEL
         "gameLogic/levelButtonState/button_cond/M_ctr_q_19" BEL
         "gameLogic/levelButtonState/button_cond/M_ctr_q_18" BEL
@@ -108,34 +115,39 @@ TIMEGRP clk = BEL "M_patternNew_q_0" BEL "M_patternNew_q_1" BEL
         "gameLogic/levelButtonState/button_cond/M_ctr_q_0" BEL
         "gameLogic/levelButtonState/button_cond/sync/M_pipe_q_1" BEL
         "gameLogic/levelButtonState/button_cond/sync/Mshreg_M_pipe_q_1" BEL
-        "gameLogic/M_p2State_q_0" BEL "gameLogic/M_p2State_q_1" BEL
-        "gameLogic/M_timeToUpdateMap_q_0" BEL
-        "gameLogic/M_timeToUpdateMap_q_1" BEL
+        "gameLogic/M_p2State_q_FSM_FFd1" BEL "gameLogic/M_p2State_q_FSM_FFd2"
+        BEL "gameLogic/M_p2PositionX_q_0_1" BEL
+        "gameLogic/M_p1PositionX_q_0_1" BEL "gameLogic/M_p1PositionX_q_0_2"
+        BEL "gameLogic/M_p1PositionX_q_1_1" BEL
+        "gameLogic/M_p1PositionX_q_2_1" BEL "gameLogic/M_timeToUpdateMap_q_0"
+        BEL "gameLogic/M_timeToUpdateMap_q_1" BEL
         "gameLogic/M_timeToUpdateMap_q_2" BEL
         "gameLogic/M_timeToUpdateMap_q_3" BEL
         "gameLogic/M_timeToUpdateMap_q_4" BEL
-        "gameLogic/M_timeToUpdateMap_q_5" BEL
-        "gameLogic/M_timeToUpdateMap_q_6" BEL
-        "gameLogic/M_timeToUpdateMap_q_7" BEL
-        "gameLogic/M_timeToUpdateMap_q_8" BEL
-        "gameLogic/M_timeToUpdateMap_q_9" BEL "gameLogic/M_p2PositionY_q_3_1"
+        "gameLogic/M_timeToUpdateMap_q_5" BEL "gameLogic/M_p2PositionY_q_2_1"
+        BEL "gameLogic/M_timeToUpdateMap_q_6" BEL
+        "gameLogic/M_p2PositionY_q_2_2" BEL "gameLogic/M_timeToUpdateMap_q_7"
+        BEL "gameLogic/M_p2PositionY_q_2_3" BEL
+        "gameLogic/M_p2PositionY_q_2_4" BEL "gameLogic/M_timeToUpdateMap_q_8"
+        BEL "gameLogic/M_timeToUpdateMap_q_9" BEL
+        "gameLogic/M_p1PositionX_q_3_1" BEL "gameLogic/M_p2PositionY_q_3_1"
         BEL "gameLogic/M_p2PositionY_q_3_2" BEL
         "gameLogic/M_p2PositionY_q_3_3" BEL "gameLogic/M_p2PositionY_q_3_4"
-        BEL "gameLogic/M_p2PositionY_q_3_5" BEL
-        "gameLogic/M_p2PositionY_q_3_6" BEL "gameLogic/M_p2PositionY_q_3_7"
         BEL "gameLogic/M_p2PositionX_q_0" BEL "gameLogic/M_p2PositionX_q_1"
         BEL "gameLogic/M_p2PositionX_q_2" BEL "gameLogic/M_p2PositionX_q_3"
-        BEL "gameLogic/M_p1PositionY_q_2_1" BEL
-        "gameLogic/M_p1PositionY_q_2_2" BEL "gameLogic/M_p1PositionY_q_3_1"
-        BEL "gameLogic/M_p1PositionY_q_3_2" BEL
-        "gameLogic/M_p1PositionY_q_3_3" BEL "gameLogic/M_p1PositionY_q_3_4"
-        BEL "gameLogic/M_p1PositionY_q_3_5" BEL
-        "gameLogic/M_p1PositionY_q_3_6" BEL "gameLogic/M_p1PositionY_q_3_7"
-        BEL "gameLogic/M_p1State_q_0" BEL "gameLogic/M_p1State_q_1" BEL
-        "gameLogic/M_p1PositionX_q_0" BEL "gameLogic/M_p1PositionX_q_1" BEL
-        "gameLogic/M_p1PositionX_q_2" BEL "gameLogic/M_p1PositionX_q_3" BEL
-        "gameLogic/M_timeToUpdateMap_q_10" BEL
-        "gameLogic/M_timeToUpdateMap_q_11" BEL
+        BEL "gameLogic/M_p1PositionY_q_0_1" BEL
+        "gameLogic/M_p1PositionY_q_0_2" BEL "gameLogic/M_p1PositionY_q_1_1"
+        BEL "gameLogic/M_p1PositionY_q_1_2" BEL
+        "gameLogic/M_p1PositionY_q_2_1" BEL "gameLogic/M_p1PositionY_q_2_2"
+        BEL "gameLogic/M_p1PositionY_q_2_3" BEL
+        "gameLogic/M_p1PositionY_q_2_4" BEL "gameLogic/M_p1PositionY_q_2_5"
+        BEL "gameLogic/M_p1PositionY_q_3_1" BEL
+        "gameLogic/M_p1PositionY_q_3_2" BEL "gameLogic/M_p1PositionY_q_3_3"
+        BEL "gameLogic/M_p1PositionY_q_3_4" BEL
+        "gameLogic/M_p1PositionY_q_3_5" BEL "gameLogic/M_p1PositionX_q_0" BEL
+        "gameLogic/M_p1PositionX_q_1" BEL "gameLogic/M_p1PositionX_q_2" BEL
+        "gameLogic/M_p1PositionX_q_3" BEL "gameLogic/M_timeToUpdateMap_q_10"
+        BEL "gameLogic/M_timeToUpdateMap_q_11" BEL
         "gameLogic/M_timeToUpdateMap_q_12" BEL
         "gameLogic/M_timeToUpdateMap_q_13" BEL
         "gameLogic/M_timeToUpdateMap_q_14" BEL
@@ -147,24 +159,20 @@ TIMEGRP clk = BEL "M_patternNew_q_0" BEL "M_patternNew_q_1" BEL
         "gameLogic/M_timeToUpdateMap_q_17" BEL
         "gameLogic/M_timeToUpdateMap_q_23" BEL
         "gameLogic/M_timeToUpdateMap_q_18" BEL
-        "gameLogic/M_timeToUpdateMap_q_19" BEL
         "gameLogic/M_timeToUpdateMap_q_24" BEL
-        "gameLogic/M_timeToUpdateMap_q_25" BEL "M_p1Score_q_0" BEL
-        "M_p1Score_q_1" BEL "M_p1Score_q_2" BEL "M_p1Score_q_3" BEL
-        "M_first_q_0_10" BEL "M_first_q_0_11" BEL "M_first_q_0_12" BEL
-        "M_first_q_0_13" BEL "M_first_q_0_14" BEL "M_first_q_0_15" BEL
-        "clk_IBUF_BUFG" BEL "M_patternNew_q_100" BEL "M_patternNew_q_101" BEL
-        "M_patternNew_q_102" BEL "M_patternNew_q_103" BEL "M_patternNew_q_104"
-        BEL "M_patternNew_q_105" BEL "M_patternNew_q_110" BEL
-        "M_patternNew_q_106" BEL "M_patternNew_q_111" BEL "M_patternNew_q_107"
-        BEL "M_patternNew_q_112" BEL "M_patternNew_q_108" BEL
-        "M_patternNew_q_113" BEL "M_patternNew_q_109" BEL "M_patternNew_q_114"
-        BEL "M_patternNew_q_115" BEL "M_patternNew_q_120" BEL
-        "M_patternNew_q_116" BEL "M_patternNew_q_121" BEL "M_patternNew_q_117"
-        BEL "M_patternNew_q_122" BEL "M_patternNew_q_118" BEL
-        "M_patternNew_q_123" BEL "M_patternNew_q_119" BEL "M_patternNew_q_124"
-        BEL "M_patternNew_q_125" BEL "M_patternNew_q_130" BEL
-        "M_patternNew_q_126" BEL "M_patternNew_q_131" BEL "M_patternNew_q_127"
+        "gameLogic/M_timeToUpdateMap_q_19" BEL
+        "gameLogic/M_timeToUpdateMap_q_25" BEL "clk_IBUF_BUFG" BEL
+        "M_patternNew_q_100" BEL "M_patternNew_q_101" BEL "M_patternNew_q_102"
+        BEL "M_patternNew_q_103" BEL "M_patternNew_q_104" BEL
+        "M_patternNew_q_105" BEL "M_patternNew_q_110" BEL "M_patternNew_q_106"
+        BEL "M_patternNew_q_111" BEL "M_patternNew_q_107" BEL
+        "M_patternNew_q_112" BEL "M_patternNew_q_108" BEL "M_patternNew_q_109"
+        BEL "M_patternNew_q_114" BEL "M_patternNew_q_115" BEL
+        "M_patternNew_q_120" BEL "M_patternNew_q_116" BEL "M_patternNew_q_121"
+        BEL "M_patternNew_q_117" BEL "M_patternNew_q_122" BEL
+        "M_patternNew_q_118" BEL "M_patternNew_q_123" BEL "M_patternNew_q_119"
+        BEL "M_patternNew_q_124" BEL "M_patternNew_q_125" BEL
+        "M_patternNew_q_130" BEL "M_patternNew_q_131" BEL "M_patternNew_q_127"
         BEL "M_patternNew_q_132" BEL "M_patternNew_q_128" BEL
         "M_patternNew_q_133" BEL "M_patternNew_q_129" BEL "M_patternNew_q_134"
         BEL "M_patternNew_q_135" BEL "M_patternNew_q_140" BEL
@@ -193,55 +201,51 @@ TIMEGRP clk = BEL "M_patternNew_q_0" BEL "M_patternNew_q_1" BEL
         "M_patternNew_q_168" BEL "M_patternNew_q_223" BEL "M_patternNew_q_218"
         BEL "M_patternNew_q_173" BEL "M_patternNew_q_169" BEL
         "M_patternNew_q_224" BEL "M_patternNew_q_219" BEL "M_patternNew_q_174"
-        BEL "M_patternNew_q_175" BEL "M_first_q_0" BEL "M_patternNew_q_230"
-        BEL "M_patternNew_q_225" BEL "M_patternNew_q_180" BEL
-        "M_patternNew_q_176" BEL "M_patternNew_q_231" BEL "M_patternNew_q_226"
-        BEL "M_patternNew_q_181" BEL "M_patternNew_q_177" BEL
-        "M_patternNew_q_232" BEL "M_patternNew_q_227" BEL "M_patternNew_q_182"
-        BEL "M_patternNew_q_178" BEL "M_patternNew_q_233" BEL
-        "M_patternNew_q_228" BEL "M_patternNew_q_183" BEL "M_patternNew_q_179"
-        BEL "M_patternNew_q_234" BEL "M_patternNew_q_229" BEL
-        "M_patternNew_q_184" BEL "M_patternNew_q_185" BEL "M_patternNew_q_240"
-        BEL "M_patternNew_q_235" BEL "M_patternNew_q_190" BEL
-        "M_patternNew_q_186" BEL "M_patternNew_q_241" BEL "M_patternNew_q_236"
-        BEL "M_patternNew_q_191" BEL "M_patternNew_q_187" BEL
-        "M_patternNew_q_242" BEL "M_patternNew_q_237" BEL "M_patternNew_q_192"
-        BEL "M_patternNew_q_188" BEL "M_patternNew_q_243" BEL
-        "M_patternNew_q_238" BEL "M_patternNew_q_193" BEL "M_patternNew_q_189"
-        BEL "M_patternNew_q_244" BEL "M_patternNew_q_239" BEL
-        "M_patternNew_q_194" BEL "M_patternNew_q_195" BEL "M_patternNew_q_250"
-        BEL "M_patternNew_q_245" BEL "M_patternNew_q_196" BEL
-        "M_patternNew_q_251" BEL "M_patternNew_q_246" BEL "M_patternNew_q_197"
-        BEL "M_patternNew_q_252" BEL "M_patternNew_q_247" BEL
-        "M_patternNew_q_198" BEL "M_patternNew_q_253" BEL "M_patternNew_q_248"
-        BEL "M_patternNew_q_199" BEL "M_patternNew_q_254" BEL
-        "M_patternNew_q_249" BEL "M_patternNew_q_255" BEL
-        "matrixDisplay/M_k_q_3" BEL "matrixDisplay/M_k_q_2" BEL
-        "matrixDisplay/M_k_q_1" BEL "matrixDisplay/M_k_q_0" BEL
-        "matrixDisplay/M_state_q_FSM_FFd1" BEL "matrixDisplay/M_i_q_3" BEL
+        BEL "M_patternNew_q_175" BEL "M_patternNew_q_230" BEL
+        "M_patternNew_q_225" BEL "M_patternNew_q_180" BEL "M_patternNew_q_176"
+        BEL "M_patternNew_q_231" BEL "M_patternNew_q_226" BEL
+        "M_patternNew_q_181" BEL "M_patternNew_q_177" BEL "M_patternNew_q_232"
+        BEL "M_patternNew_q_227" BEL "M_patternNew_q_182" BEL
+        "M_patternNew_q_178" BEL "M_patternNew_q_233" BEL "M_patternNew_q_228"
+        BEL "M_patternNew_q_183" BEL "M_patternNew_q_179" BEL
+        "M_patternNew_q_234" BEL "M_patternNew_q_229" BEL "M_patternNew_q_184"
+        BEL "M_patternNew_q_185" BEL "M_patternNew_q_240" BEL
+        "M_patternNew_q_235" BEL "M_patternNew_q_190" BEL "M_patternNew_q_186"
+        BEL "M_patternNew_q_241" BEL "M_patternNew_q_236" BEL
+        "M_patternNew_q_191" BEL "M_patternNew_q_187" BEL "M_patternNew_q_242"
+        BEL "M_patternNew_q_237" BEL "M_patternNew_q_192" BEL
+        "M_patternNew_q_188" BEL "M_patternNew_q_243" BEL "M_patternNew_q_238"
+        BEL "M_patternNew_q_193" BEL "M_patternNew_q_189" BEL
+        "M_patternNew_q_244" BEL "M_patternNew_q_239" BEL "M_patternNew_q_194"
+        BEL "M_patternNew_q_195" BEL "M_patternNew_q_250" BEL
+        "M_patternNew_q_245" BEL "M_patternNew_q_196" BEL "M_patternNew_q_251"
+        BEL "M_patternNew_q_246" BEL "M_patternNew_q_197" BEL
+        "M_patternNew_q_252" BEL "M_patternNew_q_247" BEL "M_patternNew_q_198"
+        BEL "M_patternNew_q_253" BEL "M_patternNew_q_248" BEL
+        "M_patternNew_q_199" BEL "M_patternNew_q_254" BEL "M_patternNew_q_249"
+        BEL "M_patternNew_q_255" BEL "matrixDisplay/M_state_q_FSM_FFd1" BEL
+        "matrixDisplay/M_state_q_FSM_FFd2" BEL "matrixDisplay/M_k_q_3" BEL
+        "matrixDisplay/M_k_q_2" BEL "matrixDisplay/M_k_q_1" BEL
+        "matrixDisplay/M_k_q_0" BEL "matrixDisplay/M_i_q_3" BEL
         "matrixDisplay/M_i_q_2" BEL "matrixDisplay/M_i_q_1" BEL
-        "matrixDisplay/M_i_q_0" BEL "matrixDisplay/M_state_q_FSM_FFd2" BEL
-        "matrixDisplay/M_time_q_14" BEL "matrixDisplay/M_time_q_13" BEL
-        "matrixDisplay/M_time_q_12" BEL "matrixDisplay/M_time_q_11" BEL
-        "matrixDisplay/M_time_q_10" BEL "matrixDisplay/M_time_q_9" BEL
-        "matrixDisplay/M_time_q_8" BEL "matrixDisplay/M_time_q_7" BEL
-        "matrixDisplay/M_time_q_6" BEL "matrixDisplay/M_time_q_5" BEL
-        "matrixDisplay/M_time_q_4" BEL "matrixDisplay/M_time_q_3" BEL
-        "matrixDisplay/M_time_q_2" BEL "matrixDisplay/M_time_q_1" BEL
-        "matrixDisplay/M_time_q_0" BEL "matrixDisplay/M_j_q_3" BEL
+        "matrixDisplay/M_i_q_0" BEL "matrixDisplay/M_j_q_3" BEL
         "matrixDisplay/M_j_q_2" BEL "matrixDisplay/M_j_q_1" BEL
-        "matrixDisplay/M_j_q_0" BEL "M_first_q_0_1" BEL "M_first_q_0_2" BEL
-        "M_first_q_0_3" BEL "M_first_q_0_4" BEL "M_first_q_0_5" BEL
-        "M_first_q_0_6" BEL "M_first_q_0_7" BEL "M_first_q_0_8" BEL
-        "M_first_q_0_9" BEL "numbersDisplayMain/M_timer_q_0" BEL
-        "numbersDisplayMain/M_timer_q_1" BEL "numbersDisplayMain/M_timer_q_2"
-        BEL "numbersDisplayMain/M_timer_q_3" BEL
-        "numbersDisplayMain/M_timer_q_4" BEL "numbersDisplayMain/M_timer_q_5"
-        BEL "numbersDisplayMain/M_timer_q_6" BEL
-        "numbersDisplayMain/M_timer_q_7" BEL "numbersDisplayMain/M_timer_q_8"
-        BEL "numbersDisplayMain/M_timer_q_9" BEL
-        "numbersDisplayMain/M_timer_q_10" BEL
-        "numbersDisplayMain/M_timer_q_11" BEL
+        "matrixDisplay/M_j_q_0" BEL "matrixDisplay/M_time_q_14" BEL
+        "matrixDisplay/M_time_q_13" BEL "matrixDisplay/M_time_q_12" BEL
+        "matrixDisplay/M_time_q_11" BEL "matrixDisplay/M_time_q_10" BEL
+        "matrixDisplay/M_time_q_9" BEL "matrixDisplay/M_time_q_8" BEL
+        "matrixDisplay/M_time_q_7" BEL "matrixDisplay/M_time_q_6" BEL
+        "matrixDisplay/M_time_q_5" BEL "matrixDisplay/M_time_q_4" BEL
+        "matrixDisplay/M_time_q_3" BEL "matrixDisplay/M_time_q_2" BEL
+        "matrixDisplay/M_time_q_1" BEL "matrixDisplay/M_time_q_0" BEL
+        "numbersDisplayMain/M_timer_q_0" BEL "numbersDisplayMain/M_timer_q_1"
+        BEL "numbersDisplayMain/M_timer_q_2" BEL
+        "numbersDisplayMain/M_timer_q_3" BEL "numbersDisplayMain/M_timer_q_4"
+        BEL "numbersDisplayMain/M_timer_q_5" BEL
+        "numbersDisplayMain/M_timer_q_6" BEL "numbersDisplayMain/M_timer_q_7"
+        BEL "numbersDisplayMain/M_timer_q_8" BEL
+        "numbersDisplayMain/M_timer_q_9" BEL "numbersDisplayMain/M_timer_q_10"
+        BEL "numbersDisplayMain/M_timer_q_11" BEL
         "numbersDisplayMain/M_timer_q_12" BEL
         "numbersDisplayMain/M_timer_q_13" BEL
         "numbersDisplayMain/M_timer_q_14" BEL "numbersDisplayMain/M_digit_q_0"

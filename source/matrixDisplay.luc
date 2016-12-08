@@ -4,6 +4,7 @@ module matrixDisplay (
     input ledArray[16][16],
     output inputsToCircuit [8]  // declares an output currentCounter with 26 bits
   ) {
+    alu alu;
     .clk(clk) {
     .rst(rst){
       fsm state(.clk(clk), #INIT(START)) = {ONE,TWO,THREE,START};
@@ -15,13 +16,16 @@ module matrixDisplay (
     }
 
   always {
+    alu.a = b00000000;
+    alu.b = b00000000;
+    alu.alufn = b000000;
     inputsToCircuit = c{0,0,0,0,0,0,0,0};
     case(state.q){
       state.ONE:
         inputsToCircuit[4] = 1;
         inputsToCircuit[7] = 0;
         inputsToCircuit[5] = 0;
-        inputsToCircuit[6] = clk - 1;
+        inputsToCircuit[6] = clk - 1;    
         if (j.q == 15){
           state.d = state.TWO;
           j.d = 0;
@@ -47,7 +51,7 @@ module matrixDisplay (
           j.d = j.q + 1;
           }
 
-     
+
     state.THREE:
         inputsToCircuit[3] = k.q[0];
         inputsToCircuit[2] = k.q[1];
@@ -64,7 +68,10 @@ module matrixDisplay (
             state.d = state.START;
             }
          else{
-          i.d = i.q - 1;
+          alu.alufn = b000001; // use alu subtraction
+          alu.a = i.q;
+          alu.b = b1;
+          i.d = alu.out;
           k.d = k.q + 1;
           state.d = state.ONE;
             }

@@ -28,16 +28,16 @@ INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on
 Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 52209 paths analyzed, 2550 endpoints analyzed, 0 failing endpoints
+ 313692 paths analyzed, 2521 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  10.046ns.
+ Minimum period is  14.981ns.
 --------------------------------------------------------------------------------
-Slack:                  9.954ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.019ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.960ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.596 - 0.647)
+  Data Path Delay:      14.943ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -48,39 +48,42 @@ Slack:                  9.954ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CX       net (fanout=16)       2.494   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CMUX     Tcxc                  0.192   gameLogic/Sh17887
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.960ns (1.772ns logic, 8.188ns route)
-                                                       (17.8% logic, 82.2% route)
+    Total                                     14.943ns (2.050ns logic, 12.893ns route)
+                                                       (13.7% logic, 86.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.095ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.060ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.805ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.065ns (0.689 - 0.754)
+  Data Path Delay:      14.902ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -91,39 +94,42 @@ Slack:                  10.095ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y33.AMUX     Tshcko                0.535   gameLogic/M_p2PositionY_q[3]
-                                                       gameLogic/M_p2PositionY_q_2
-    SLICE_X0Y21.CX       net (fanout=85)       2.732   gameLogic/M_p2PositionY_q[2]
-    SLICE_X0Y21.CMUX     Tcxc                  0.182   gameLogic/M_p2PositionY_q[3]_Decoder_103_OUT<107><7>2
-                                                       gameLogic/Sh383253
-    SLICE_X2Y22.A1       net (fanout=1)        0.944   gameLogic/Sh383253
-    SLICE_X2Y22.A        Tilo                  0.235   gameLogic/Sh383257
-                                                       gameLogic/Sh383257
-    SLICE_X6Y31.A2       net (fanout=1)        1.751   gameLogic/Sh383257
-    SLICE_X6Y31.A        Tilo                  0.235   gameLogic/Sh383247
-                                                       gameLogic/Sh383263
-    SLICE_X20Y29.A5      net (fanout=1)        1.628   gameLogic/Sh383263
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.805ns (1.814ns logic, 7.991ns route)
-                                                       (18.5% logic, 81.5% route)
+    Total                                     14.902ns (2.045ns logic, 12.857ns route)
+                                                       (13.7% logic, 86.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.128ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.214ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_3_4 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.781ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.745ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.006ns (0.194 - 0.200)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -134,40 +140,42 @@ Slack:                  10.128ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_3_4 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X6Y36.D4       net (fanout=14)       2.059   M_first_q_0_7
-    SLICE_X6Y36.CMUX     Topdc                 0.402   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_F
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X10Y42.DQ      Tcko                  0.476   gameLogic/M_p2PositionY_q_3_4
+                                                       gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A3      net (fanout=10)       1.925   gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.781ns (2.028ns logic, 7.753ns route)
-                                                       (20.7% logic, 79.3% route)
+    Total                                     14.745ns (2.091ns logic, 12.654ns route)
+                                                       (14.2% logic, 85.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.179ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.223ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.735ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.596 - 0.647)
+  Data Path Delay:      14.739ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -178,39 +186,42 @@ Slack:                  10.179ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y36.CX       net (fanout=16)       2.133   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y36.CMUX     Tcxc                  0.182   gameLogic/Sh17882
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A1       net (fanout=19)       2.794   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A        Tilo                  0.259   gameLogic/Sh388066
+                                                       gameLogic/Sh388066
+    SLICE_X10Y33.A2      net (fanout=1)        1.421   gameLogic/Sh388066
+    SLICE_X10Y33.A       Tilo                  0.235   gameLogic/Sh388067
+                                                       gameLogic/Sh388068
+    SLICE_X12Y38.A5      net (fanout=1)        1.293   gameLogic/Sh388068
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.735ns (1.762ns logic, 7.973ns route)
-                                                       (18.1% logic, 81.9% route)
+    Total                                     14.739ns (2.021ns logic, 12.718ns route)
+                                                       (13.7% logic, 86.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.184ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.307ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_164 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.735ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.046ns (0.601 - 0.647)
+  Data Path Delay:      14.657ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -221,39 +232,42 @@ Slack:                  10.184ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_164
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CX       net (fanout=16)       2.494   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CMUX     Tcxc                  0.192   gameLogic/Sh17887
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X4Y44.A4       net (fanout=20)       2.651   gameLogic/nextMap<100>1115
+    SLICE_X4Y44.CLK      Tas                   0.339   M_patternNew_q[167]
+                                                       gameLogic/nextMap<92>
+                                                       M_patternNew_q_164
     -------------------------------------------------  ---------------------------
-    Total                                      9.735ns (1.772ns logic, 7.963ns route)
-                                                       (18.2% logic, 81.8% route)
+    Total                                     14.657ns (2.040ns logic, 12.617ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.255ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.348ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_164 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.654ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.616ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -264,40 +278,42 @@ Slack:                  10.255ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_164
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X4Y36.C5       net (fanout=14)       1.758   M_first_q_0_7
-    SLICE_X4Y36.CMUX     Tilo                  0.430   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_G
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X4Y44.A4       net (fanout=20)       2.651   gameLogic/nextMap<100>1115
+    SLICE_X4Y44.CLK      Tas                   0.339   M_patternNew_q[167]
+                                                       gameLogic/nextMap<92>
+                                                       M_patternNew_q_164
     -------------------------------------------------  ---------------------------
-    Total                                      9.654ns (2.056ns logic, 7.598ns route)
-                                                       (21.3% logic, 78.7% route)
+    Total                                     14.616ns (2.035ns logic, 12.581ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.266ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.367ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.643ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.595ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -308,40 +324,42 @@ Slack:                  10.266ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X6Y36.C6       net (fanout=14)       1.920   M_first_q_0_7
-    SLICE_X6Y36.CMUX     Tilo                  0.403   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_G
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X6Y27.D1       net (fanout=19)       2.994   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X6Y27.D        Tilo                  0.235   gameLogic/Sh388055
+                                                       gameLogic/Sh388055
+    SLICE_X11Y26.A3      net (fanout=1)        0.904   gameLogic/Sh388055
+    SLICE_X11Y26.A       Tilo                  0.259   gameLogic/Sh388056
+                                                       gameLogic/Sh388057
+    SLICE_X15Y35.A3      net (fanout=1)        1.429   gameLogic/Sh388057
+    SLICE_X15Y35.A       Tilo                  0.259   gameLogic/Sh388044
+                                                       gameLogic/Sh388063
+    SLICE_X15Y49.C5      net (fanout=2)        1.313   gameLogic/Sh388063
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.643ns (2.029ns logic, 7.614ns route)
-                                                       (21.0% logic, 79.0% route)
+    Total                                     14.595ns (2.026ns logic, 12.569ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.324ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_3_1 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.385ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               M_patternNew_q_251 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.584ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.057ns (0.689 - 0.746)
+  Data Path Delay:      14.545ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.035ns (0.715 - 0.750)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -352,40 +370,42 @@ Slack:                  10.324ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_3_1 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: M_patternNew_q_251 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y32.AQ       Tcko                  0.525   gameLogic/M_p2PositionY_q_3_4
-                                                       gameLogic/M_p2PositionY_q_3_1
-    SLICE_X0Y21.D2       net (fanout=20)       2.247   gameLogic/M_p2PositionY_q_3_1
-    SLICE_X0Y21.CMUX     Topdc                 0.456   gameLogic/M_p2PositionY_q[3]_Decoder_103_OUT<107><7>2
-                                                       gameLogic/Sh383253_F
-                                                       gameLogic/Sh383253
-    SLICE_X2Y22.A1       net (fanout=1)        0.944   gameLogic/Sh383253
-    SLICE_X2Y22.A        Tilo                  0.235   gameLogic/Sh383257
-                                                       gameLogic/Sh383257
-    SLICE_X6Y31.A2       net (fanout=1)        1.751   gameLogic/Sh383257
-    SLICE_X6Y31.A        Tilo                  0.235   gameLogic/Sh383247
-                                                       gameLogic/Sh383263
-    SLICE_X20Y29.A5      net (fanout=1)        1.628   gameLogic/Sh383263
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X5Y27.BQ       Tcko                  0.430   M_patternNew_q[252]
+                                                       M_patternNew_q_251
+    SLICE_X10Y22.A1      net (fanout=4)        2.140   M_patternNew_q[251]
+    SLICE_X10Y22.A       Tilo                  0.235   gameLogic/N358
+                                                       gameLogic/Sh388011
+    SLICE_X9Y25.C2       net (fanout=1)        1.339   gameLogic/Sh388011
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.584ns (2.078ns logic, 7.506ns route)
-                                                       (21.7% logic, 78.3% route)
+    Total                                     14.545ns (2.026ns logic, 12.519ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.333ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_3_4 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.396ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_163 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.576ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.568ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -396,40 +416,42 @@ Slack:                  10.333ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_3_4 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_163
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y22.DQ       Tcko                  0.525   gameLogic/M_p1PositionY_q_3_4
-                                                       gameLogic/M_p1PositionY_q_3_4
-    SLICE_X4Y36.D2       net (fanout=16)       1.605   gameLogic/M_p1PositionY_q_3_4
-    SLICE_X4Y36.CMUX     Topdc                 0.456   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_F
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X1Y38.D1       net (fanout=20)       2.528   gameLogic/nextMap<100>1115
+    SLICE_X1Y38.CLK      Tas                   0.373   M_patternNew_q[163]
+                                                       gameLogic/nextMap<93>
+                                                       M_patternNew_q_163
     -------------------------------------------------  ---------------------------
-    Total                                      9.576ns (2.131ns logic, 7.445ns route)
-                                                       (22.3% logic, 77.7% route)
+    Total                                     14.568ns (2.074ns logic, 12.494ns route)
+                                                       (14.2% logic, 85.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.348ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_3_4 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.411ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.561ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.551ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -440,40 +462,42 @@ Slack:                  10.348ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_3_4 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y22.DQ       Tcko                  0.525   gameLogic/M_p1PositionY_q_3_4
-                                                       gameLogic/M_p1PositionY_q_3_4
-    SLICE_X6Y36.D1       net (fanout=16)       1.790   gameLogic/M_p1PositionY_q_3_4
-    SLICE_X6Y36.CMUX     Topdc                 0.402   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_F
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X13Y27.A1      net (fanout=19)       3.192   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X13Y27.A       Tilo                  0.259   gameLogic/N90
+                                                       gameLogic/Sh388058
+    SLICE_X8Y35.B6       net (fanout=1)        1.030   gameLogic/Sh388058
+    SLICE_X8Y35.B        Tilo                  0.254   gameLogic/Sh388061
+                                                       gameLogic/Sh388062
+    SLICE_X15Y35.A4      net (fanout=1)        1.042   gameLogic/Sh388062
+    SLICE_X15Y35.A       Tilo                  0.259   gameLogic/Sh388044
+                                                       gameLogic/Sh388063
+    SLICE_X15Y49.C5      net (fanout=2)        1.313   gameLogic/Sh388063
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.561ns (2.077ns logic, 7.484ns route)
-                                                       (21.7% logic, 78.3% route)
+    Total                                     14.551ns (2.045ns logic, 12.506ns route)
+                                                       (14.1% logic, 85.9% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.358ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.434ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.556ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.528ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -484,40 +508,42 @@ Slack:                  10.358ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X6Y36.D4       net (fanout=14)       2.059   M_first_q_0_7
-    SLICE_X6Y36.CMUX     Topdc                 0.402   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_F
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y25.C3       net (fanout=19)       2.844   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y25.C        Tilo                  0.259   gameLogic/Sh183634
+                                                       gameLogic/Sh388013
+    SLICE_X9Y25.C6       net (fanout=1)        0.594   gameLogic/Sh388013
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.556ns (2.028ns logic, 7.528ns route)
-                                                       (21.2% logic, 78.8% route)
+    Total                                     14.528ns (2.050ns logic, 12.478ns route)
+                                                       (14.1% logic, 85.9% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.389ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_patternNew_q_95 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.437ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_163 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.518ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.058ns (0.596 - 0.654)
+  Data Path Delay:      14.527ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -528,40 +554,42 @@ Slack:                  10.389ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_patternNew_q_95 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_163
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y21.CQ       Tcko                  0.525   M_patternNew_q[95]
-                                                       M_patternNew_q_95
-    SLICE_X4Y36.C3       net (fanout=4)        1.573   M_patternNew_q[95]
-    SLICE_X4Y36.CMUX     Tilo                  0.430   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_G
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X1Y38.D1       net (fanout=20)       2.528   gameLogic/nextMap<100>1115
+    SLICE_X1Y38.CLK      Tas                   0.373   M_patternNew_q[163]
+                                                       gameLogic/nextMap<93>
+                                                       M_patternNew_q_163
     -------------------------------------------------  ---------------------------
-    Total                                      9.518ns (2.105ns logic, 7.413ns route)
-                                                       (22.1% logic, 77.9% route)
+    Total                                     14.527ns (2.069ns logic, 12.458ns route)
+                                                       (14.2% logic, 85.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.390ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_6 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.474ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_0 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.519ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.470ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.021ns (0.322 - 0.343)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -572,40 +600,39 @@ Slack:                  10.390ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_6 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_0 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.BQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_6
-    SLICE_X4Y36.D4       net (fanout=18)       1.597   M_first_q_0_6
-    SLICE_X4Y36.CMUX     Topdc                 0.456   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_F
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X9Y47.CMUX     Tshcko                0.518   gameLogic/N418
+                                                       gameLogic/M_p2PositionY_q_0
+    SLICE_X11Y28.A1      net (fanout=26)       3.365   gameLogic/M_p2PositionY_q[0]
+    SLICE_X11Y28.A       Tilo                  0.259   gameLogic/Sh388077
+                                                       gameLogic/Sh388078
+    SLICE_X12Y38.A2      net (fanout=1)        2.021   gameLogic/Sh388078
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.519ns (2.082ns logic, 7.437ns route)
-                                                       (21.9% logic, 78.1% route)
+    Total                                     14.470ns (1.874ns logic, 12.596ns route)
+                                                       (13.0% logic, 87.0% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.409ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.502ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_3_4 (FF)
+  Destination:          M_patternNew_q_164 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.510ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.046ns (0.601 - 0.647)
+  Data Path Delay:      14.459ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.004ns (0.330 - 0.334)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -616,39 +643,42 @@ Slack:                  10.409ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_3_4 to M_patternNew_q_164
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y36.CX       net (fanout=16)       2.133   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y36.CMUX     Tcxc                  0.182   gameLogic/Sh17882
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X10Y42.DQ      Tcko                  0.476   gameLogic/M_p2PositionY_q_3_4
+                                                       gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A3      net (fanout=10)       1.925   gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X4Y44.A4       net (fanout=20)       2.651   gameLogic/nextMap<100>1115
+    SLICE_X4Y44.CLK      Tas                   0.339   M_patternNew_q[167]
+                                                       gameLogic/nextMap<92>
+                                                       M_patternNew_q_164
     -------------------------------------------------  ---------------------------
-    Total                                      9.510ns (1.762ns logic, 7.748ns route)
-                                                       (18.5% logic, 81.5% route)
+    Total                                     14.459ns (2.081ns logic, 12.378ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.463ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.511ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_164 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.451ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.596 - 0.647)
+  Data Path Delay:      14.453ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -659,39 +689,42 @@ Slack:                  10.463ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_164
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y33.CX       net (fanout=16)       2.092   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X4Y33.CMUX     Tcxc                  0.182   matrixDisplay/Mmux_inputsToCircuit636
-                                                       gameLogic/Sh17881
-    SLICE_X3Y27.C2       net (fanout=1)        1.445   gameLogic/Sh17881
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A1       net (fanout=19)       2.794   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A        Tilo                  0.259   gameLogic/Sh388066
+                                                       gameLogic/Sh388066
+    SLICE_X10Y33.A2      net (fanout=1)        1.421   gameLogic/Sh388066
+    SLICE_X10Y33.A       Tilo                  0.235   gameLogic/Sh388067
+                                                       gameLogic/Sh388068
+    SLICE_X12Y38.A5      net (fanout=1)        1.293   gameLogic/Sh388068
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X4Y44.A4       net (fanout=20)       2.651   gameLogic/nextMap<100>1115
+    SLICE_X4Y44.CLK      Tas                   0.339   M_patternNew_q[167]
+                                                       gameLogic/nextMap<92>
+                                                       M_patternNew_q_164
     -------------------------------------------------  ---------------------------
-    Total                                      9.451ns (1.762ns logic, 7.689ns route)
-                                                       (18.6% logic, 81.4% route)
+    Total                                     14.453ns (2.011ns logic, 12.442ns route)
+                                                       (13.9% logic, 86.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.485ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.531ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_129 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.429ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.426ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -702,40 +735,42 @@ Slack:                  10.485ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_129
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X4Y36.C5       net (fanout=14)       1.758   M_first_q_0_7
-    SLICE_X4Y36.CMUX     Tilo                  0.430   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_G
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.B5       net (fanout=20)       2.386   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<127>
+                                                       M_patternNew_q_129
     -------------------------------------------------  ---------------------------
-    Total                                      9.429ns (2.056ns logic, 7.373ns route)
-                                                       (21.8% logic, 78.2% route)
+    Total                                     14.426ns (2.074ns logic, 12.352ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.496ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_7 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.532ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_131 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.418ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.425ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -746,40 +781,42 @@ Slack:                  10.496ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_7 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_131
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.CQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_7
-    SLICE_X6Y36.C6       net (fanout=14)       1.920   M_first_q_0_7
-    SLICE_X6Y36.CMUX     Tilo                  0.403   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_G
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.D5       net (fanout=20)       2.385   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<125>
+                                                       M_patternNew_q_131
     -------------------------------------------------  ---------------------------
-    Total                                      9.418ns (2.029ns logic, 7.389ns route)
-                                                       (21.5% logic, 78.5% route)
+    Total                                     14.425ns (2.074ns logic, 12.351ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.513ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_2 (FF)
-  Destination:          M_p1Score_q_1 (FF)
+Slack:                  5.552ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_39 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.391ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.061ns (0.693 - 0.754)
+  Data Path Delay:      14.365ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.048ns (0.595 - 0.643)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -790,39 +827,42 @@ Slack:                  10.513ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2 to M_p1Score_q_1
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_39
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y33.AMUX     Tshcko                0.535   gameLogic/M_p2PositionY_q[3]
-                                                       gameLogic/M_p2PositionY_q_2
-    SLICE_X0Y21.CX       net (fanout=85)       2.732   gameLogic/M_p2PositionY_q[2]
-    SLICE_X0Y21.CMUX     Tcxc                  0.182   gameLogic/M_p2PositionY_q[3]_Decoder_103_OUT<107><7>2
-                                                       gameLogic/Sh383253
-    SLICE_X2Y22.A1       net (fanout=1)        0.944   gameLogic/Sh383253
-    SLICE_X2Y22.A        Tilo                  0.235   gameLogic/Sh383257
-                                                       gameLogic/Sh383257
-    SLICE_X6Y31.A2       net (fanout=1)        1.751   gameLogic/Sh383257
-    SLICE_X6Y31.A        Tilo                  0.235   gameLogic/Sh383247
-                                                       gameLogic/Sh383263
-    SLICE_X20Y29.A5      net (fanout=1)        1.628   gameLogic/Sh383263
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X20Y29.C1      net (fanout=5)        0.556   gameLogic/Sh3832
-    SLICE_X20Y29.CLK     Tas                   0.339   M_p1Score_q[2]
-                                                       gameLogic/Mmux_p1ScoreOut41
-                                                       M_p1Score_q_1
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X4Y29.A6       net (fanout=17)       2.584   Sh3880
+    SLICE_X4Y29.A        Tilo                  0.254   M_patternNew_q[249]
+                                                       gameLogic/nextMap<100>111_1
+    SLICE_X15Y43.D3      net (fanout=20)       2.724   gameLogic/nextMap<100>111
+    SLICE_X15Y43.CLK     Tas                   0.373   M_patternNew_q[39]
+                                                       gameLogic/nextMap<217>
+                                                       M_patternNew_q_39
     -------------------------------------------------  ---------------------------
-    Total                                      9.391ns (1.780ns logic, 7.611ns route)
-                                                       (19.0% logic, 81.0% route)
+    Total                                     14.365ns (2.093ns logic, 12.272ns route)
+                                                       (14.6% logic, 85.4% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.532ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_12 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.565ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_130 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.382ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.596 - 0.647)
+  Data Path Delay:      14.392ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -833,40 +873,42 @@ Slack:                  10.532ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_12 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_130
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X8Y26.DQ       Tcko                  0.525   M_first_q_0_12
-                                                       M_first_q_0_12
-    SLICE_X6Y20.D2       net (fanout=19)       1.563   M_first_q_0_12
-    SLICE_X6Y20.CMUX     Topdc                 0.402   gameLogic/Sh178818
-                                                       gameLogic/Sh178818_F
-                                                       gameLogic/Sh178818
-    SLICE_X3Y27.B2       net (fanout=1)        1.902   gameLogic/Sh178818
-    SLICE_X3Y27.B        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178820
-    SLICE_X3Y27.A5       net (fanout=1)        0.230   gameLogic/Sh178820
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.C5       net (fanout=20)       2.352   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<126>
+                                                       M_patternNew_q_130
     -------------------------------------------------  ---------------------------
-    Total                                      9.382ns (2.077ns logic, 7.305ns route)
-                                                       (22.1% logic, 77.9% route)
+    Total                                     14.392ns (2.074ns logic, 12.318ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.532ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.572ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_129 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.368ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.065ns (0.689 - 0.754)
+  Data Path Delay:      14.385ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -877,39 +919,42 @@ Slack:                  10.532ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_129
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y33.AMUX     Tshcko                0.535   gameLogic/M_p2PositionY_q[3]
-                                                       gameLogic/M_p2PositionY_q_2
-    SLICE_X20Y18.CX      net (fanout=85)       2.760   gameLogic/M_p2PositionY_q[2]
-    SLICE_X20Y18.CMUX    Tcxc                  0.182   gameLogic/Sh383234
-                                                       gameLogic/Sh383234
-    SLICE_X12Y20.A2      net (fanout=1)        1.338   gameLogic/Sh383234
-    SLICE_X12Y20.A       Tilo                  0.254   gameLogic/Sh383236
-                                                       gameLogic/Sh383236
-    SLICE_X19Y28.A4      net (fanout=1)        1.570   gameLogic/Sh383236
-    SLICE_X19Y28.A       Tilo                  0.259   gameLogic/Sh383226
-                                                       gameLogic/Sh383242
-    SLICE_X20Y29.A4      net (fanout=1)        0.907   gameLogic/Sh383242
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.B5       net (fanout=20)       2.386   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<127>
+                                                       M_patternNew_q_129
     -------------------------------------------------  ---------------------------
-    Total                                      9.368ns (1.857ns logic, 7.511ns route)
-                                                       (19.8% logic, 80.2% route)
+    Total                                     14.385ns (2.069ns logic, 12.316ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.535ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_6 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.573ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_131 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.374ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.384ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -920,40 +965,42 @@ Slack:                  10.535ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_6 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_131
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.BQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_6
-    SLICE_X4Y33.D5       net (fanout=18)       1.695   M_first_q_0_6
-    SLICE_X4Y33.CMUX     Topdc                 0.456   matrixDisplay/Mmux_inputsToCircuit636
-                                                       gameLogic/Sh17881_F
-                                                       gameLogic/Sh17881
-    SLICE_X3Y27.C2       net (fanout=1)        1.445   gameLogic/Sh17881
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.D5       net (fanout=20)       2.385   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<125>
+                                                       M_patternNew_q_131
     -------------------------------------------------  ---------------------------
-    Total                                      9.374ns (2.082ns logic, 7.292ns route)
-                                                       (22.2% logic, 77.8% route)
+    Total                                     14.384ns (2.069ns logic, 12.315ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.552ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.584ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_2 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.348ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.065ns (0.689 - 0.754)
+  Data Path Delay:      14.378ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -964,39 +1011,42 @@ Slack:                  10.552ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_2 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y33.AMUX     Tshcko                0.535   gameLogic/M_p2PositionY_q[3]
-                                                       gameLogic/M_p2PositionY_q_2
-    SLICE_X4Y19.CX       net (fanout=85)       2.287   gameLogic/M_p2PositionY_q[2]
-    SLICE_X4Y19.CMUX     Tcxc                  0.182   gameLogic/Sh383255
-                                                       gameLogic/Sh383255
-    SLICE_X2Y22.A3       net (fanout=1)        0.932   gameLogic/Sh383255
-    SLICE_X2Y22.A        Tilo                  0.235   gameLogic/Sh383257
-                                                       gameLogic/Sh383257
-    SLICE_X6Y31.A2       net (fanout=1)        1.751   gameLogic/Sh383257
-    SLICE_X6Y31.A        Tilo                  0.235   gameLogic/Sh383247
-                                                       gameLogic/Sh383263
-    SLICE_X20Y29.A5      net (fanout=1)        1.628   gameLogic/Sh383263
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.BQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_2
+    SLICE_X10Y22.A4      net (fanout=19)       1.973   gameLogic/M_p2PositionY_q_2_2
+    SLICE_X10Y22.A       Tilo                  0.235   gameLogic/N358
+                                                       gameLogic/Sh388011
+    SLICE_X9Y25.C2       net (fanout=1)        1.339   gameLogic/Sh388011
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.348ns (1.814ns logic, 7.534ns route)
-                                                       (19.4% logic, 80.6% route)
+    Total                                     14.378ns (2.026ns logic, 12.352ns route)
+                                                       (14.1% logic, 85.9% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.563ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_3_4 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.591ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_3_4 (FF)
+  Destination:          M_patternNew_q_163 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.351ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.370ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.004ns (0.330 - 0.334)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1007,40 +1057,42 @@ Slack:                  10.563ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_3_4 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_3_4 to M_patternNew_q_163
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y22.DQ       Tcko                  0.525   gameLogic/M_p1PositionY_q_3_4
-                                                       gameLogic/M_p1PositionY_q_3_4
-    SLICE_X4Y36.D2       net (fanout=16)       1.605   gameLogic/M_p1PositionY_q_3_4
-    SLICE_X4Y36.CMUX     Topdc                 0.456   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_F
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X10Y42.DQ      Tcko                  0.476   gameLogic/M_p2PositionY_q_3_4
+                                                       gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A3      net (fanout=10)       1.925   gameLogic/M_p2PositionY_q_3_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X1Y38.D1       net (fanout=20)       2.528   gameLogic/nextMap<100>1115
+    SLICE_X1Y38.CLK      Tas                   0.373   M_patternNew_q[163]
+                                                       gameLogic/nextMap<93>
+                                                       M_patternNew_q_163
     -------------------------------------------------  ---------------------------
-    Total                                      9.351ns (2.131ns logic, 7.220ns route)
-                                                       (22.8% logic, 77.2% route)
+    Total                                     14.370ns (2.115ns logic, 12.255ns route)
+                                                       (14.7% logic, 85.3% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.578ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_3_4 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.593ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_39 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.336ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.324ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.048ns (0.595 - 0.643)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1051,40 +1103,42 @@ Slack:                  10.578ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_3_4 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_39
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y22.DQ       Tcko                  0.525   gameLogic/M_p1PositionY_q_3_4
-                                                       gameLogic/M_p1PositionY_q_3_4
-    SLICE_X6Y36.D1       net (fanout=16)       1.790   gameLogic/M_p1PositionY_q_3_4
-    SLICE_X6Y36.CMUX     Topdc                 0.402   gameLogic/Sh17887
-                                                       gameLogic/Sh17887_F
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X4Y29.A6       net (fanout=17)       2.584   Sh3880
+    SLICE_X4Y29.A        Tilo                  0.254   M_patternNew_q[249]
+                                                       gameLogic/nextMap<100>111_1
+    SLICE_X15Y43.D3      net (fanout=20)       2.724   gameLogic/nextMap<100>111
+    SLICE_X15Y43.CLK     Tas                   0.373   M_patternNew_q[39]
+                                                       gameLogic/nextMap<217>
+                                                       M_patternNew_q_39
     -------------------------------------------------  ---------------------------
-    Total                                      9.336ns (2.077ns logic, 7.259ns route)
-                                                       (22.2% logic, 77.8% route)
+    Total                                     14.324ns (2.088ns logic, 12.236ns route)
+                                                       (14.6% logic, 85.4% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.596ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p2PositionY_q_2 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.600ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               M_patternNew_q_240 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.304ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.065ns (0.689 - 0.754)
+  Data Path Delay:      14.339ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.026ns (0.322 - 0.348)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1095,39 +1149,42 @@ Slack:                  10.596ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: M_patternNew_q_240 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y33.AMUX     Tshcko                0.535   gameLogic/M_p2PositionY_q[3]
-                                                       gameLogic/M_p2PositionY_q_2
-    SLICE_X2Y22.CX       net (fanout=85)       2.440   gameLogic/M_p2PositionY_q[2]
-    SLICE_X2Y22.CMUX     Tcxc                  0.192   gameLogic/Sh383257
-                                                       gameLogic/Sh383254
-    SLICE_X2Y22.A2       net (fanout=1)        0.725   gameLogic/Sh383254
-    SLICE_X2Y22.A        Tilo                  0.235   gameLogic/Sh383257
-                                                       gameLogic/Sh383257
-    SLICE_X6Y31.A2       net (fanout=1)        1.751   gameLogic/Sh383257
-    SLICE_X6Y31.A        Tilo                  0.235   gameLogic/Sh383247
-                                                       gameLogic/Sh383263
-    SLICE_X20Y29.A5      net (fanout=1)        1.628   gameLogic/Sh383263
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X4Y34.DQ       Tcko                  0.525   M_patternNew_q[240]
+                                                       M_patternNew_q_240
+    SLICE_X15Y29.A6      net (fanout=4)        1.470   M_patternNew_q[240]
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.304ns (1.824ns logic, 7.480ns route)
-                                                       (19.6% logic, 80.4% route)
+    Total                                     14.339ns (2.140ns logic, 12.199ns route)
+                                                       (14.9% logic, 85.1% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.599ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               gameLogic/M_p1PositionY_q_2_2 (FF)
-  Destination:          M_p2Score_q_1 (FF)
+Slack:                  5.600ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_163 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.315ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.596 - 0.647)
+  Data Path Delay:      14.364ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1138,39 +1195,42 @@ Slack:                  10.599ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: gameLogic/M_p1PositionY_q_2_2 to M_p2Score_q_1
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_163
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X9Y21.DQ       Tcko                  0.430   gameLogic/M_p1PositionY_q_2_2
-                                                       gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CX       net (fanout=16)       2.494   gameLogic/M_p1PositionY_q_2_2
-    SLICE_X6Y36.CMUX     Tcxc                  0.192   gameLogic/Sh17887
-                                                       gameLogic/Sh17887
-    SLICE_X3Y27.D2       net (fanout=1)        1.725   gameLogic/Sh17887
-    SLICE_X3Y27.D        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178810
-    SLICE_X3Y27.A3       net (fanout=1)        0.359   gameLogic/Sh178810
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.C2      net (fanout=5)        0.553   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut41
-                                                       M_p2Score_q_1
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A1       net (fanout=19)       2.794   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X7Y30.A        Tilo                  0.259   gameLogic/Sh388066
+                                                       gameLogic/Sh388066
+    SLICE_X10Y33.A2      net (fanout=1)        1.421   gameLogic/Sh388066
+    SLICE_X10Y33.A       Tilo                  0.235   gameLogic/Sh388067
+                                                       gameLogic/Sh388068
+    SLICE_X12Y38.A5      net (fanout=1)        1.293   gameLogic/Sh388068
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X1Y38.D1       net (fanout=20)       2.528   gameLogic/nextMap<100>1115
+    SLICE_X1Y38.CLK      Tas                   0.373   M_patternNew_q[163]
+                                                       gameLogic/nextMap<93>
+                                                       M_patternNew_q_163
     -------------------------------------------------  ---------------------------
-    Total                                      9.315ns (1.772ns logic, 7.543ns route)
-                                                       (19.0% logic, 81.0% route)
+    Total                                     14.364ns (2.045ns logic, 12.319ns route)
+                                                       (14.2% logic, 85.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.612ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_13 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.606ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_130 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.294ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.059ns (0.601 - 0.660)
+  Data Path Delay:      14.351ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.008ns (0.323 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1181,40 +1241,42 @@ Slack:                  10.612ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_13 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_130
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y28.AQ       Tcko                  0.476   M_first_q_0_15
-                                                       M_first_q_0_13
-    SLICE_X20Y18.D2      net (fanout=19)       2.471   M_first_q_0_13
-    SLICE_X20Y18.CMUX    Topdc                 0.456   gameLogic/Sh383234
-                                                       gameLogic/Sh383234_F
-                                                       gameLogic/Sh383234
-    SLICE_X12Y20.A2      net (fanout=1)        1.338   gameLogic/Sh383234
-    SLICE_X12Y20.A       Tilo                  0.254   gameLogic/Sh383236
-                                                       gameLogic/Sh383236
-    SLICE_X19Y28.A4      net (fanout=1)        1.570   gameLogic/Sh383236
-    SLICE_X19Y28.A       Tilo                  0.259   gameLogic/Sh383226
-                                                       gameLogic/Sh383242
-    SLICE_X20Y29.A4      net (fanout=1)        0.907   gameLogic/Sh383242
-    SLICE_X20Y29.A       Tilo                  0.254   M_p1Score_q[2]
-                                                       gameLogic/Sh383285
-    SLICE_X15Y30.B4      net (fanout=5)        0.936   gameLogic/Sh3832
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A5      net (fanout=10)       2.128   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X15Y29.A       Tilo                  0.259   gameLogic/Sh388079
+                                                       gameLogic/Sh388079
+    SLICE_X9Y38.A4       net (fanout=1)        1.881   gameLogic/Sh388079
+    SLICE_X9Y38.A        Tilo                  0.259   gameLogic/Sh388081
+                                                       gameLogic/Sh388083
+    SLICE_X12Y38.A1      net (fanout=1)        1.638   gameLogic/Sh388083
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X5Y41.C5       net (fanout=20)       2.352   gameLogic/nextMap<100>1115
+    SLICE_X5Y41.CLK      Tas                   0.373   M_patternNew_q[131]
+                                                       gameLogic/nextMap<126>
+                                                       M_patternNew_q_130
     -------------------------------------------------  ---------------------------
-    Total                                      9.294ns (2.072ns logic, 7.222ns route)
-                                                       (22.3% logic, 77.7% route)
+    Total                                     14.351ns (2.069ns logic, 12.282ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.619ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_patternNew_q_95 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.619ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_4 (FF)
+  Destination:          M_patternNew_q_100 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.293ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.053ns (0.601 - 0.654)
+  Data Path Delay:      14.343ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.194 - 0.197)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1225,40 +1287,42 @@ Slack:                  10.619ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_patternNew_q_95 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_4 to M_patternNew_q_100
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X4Y21.CQ       Tcko                  0.525   M_patternNew_q[95]
-                                                       M_patternNew_q_95
-    SLICE_X4Y36.C3       net (fanout=4)        1.573   M_patternNew_q[95]
-    SLICE_X4Y36.CMUX     Tilo                  0.430   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_G
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.DQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_4
+    SLICE_X4Y27.D5       net (fanout=10)       2.198   gameLogic/M_p2PositionY_q_2_4
+    SLICE_X4Y27.D        Tilo                  0.254   gameLogic/Sh388076
+                                                       gameLogic/Sh388076
+    SLICE_X11Y28.A3      net (fanout=1)        0.874   gameLogic/Sh388076
+    SLICE_X11Y28.A       Tilo                  0.259   gameLogic/Sh388077
+                                                       gameLogic/Sh388078
+    SLICE_X12Y38.A2      net (fanout=1)        2.021   gameLogic/Sh388078
+    SLICE_X12Y38.A       Tilo                  0.254   gameLogic/Sh388071
+                                                       gameLogic/Sh388084
+    SLICE_X15Y49.C3      net (fanout=2)        1.281   gameLogic/Sh388084
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X10Y44.A1      net (fanout=20)       3.149   gameLogic/nextMap<100>1117
+    SLICE_X10Y44.CLK     Tas                   0.349   M_patternNew_q[103]
+                                                       gameLogic/nextMap<156>
+                                                       M_patternNew_q_100
     -------------------------------------------------  ---------------------------
-    Total                                      9.293ns (2.105ns logic, 7.188ns route)
-                                                       (22.7% logic, 77.3% route)
+    Total                                     14.343ns (2.040ns logic, 12.303ns route)
+                                                       (14.2% logic, 85.8% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.620ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_6 (FF)
-  Destination:          gameLogic/M_playing_q (FF)
+Slack:                  5.655ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_164 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.294ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.051ns (0.601 - 0.652)
+  Data Path Delay:      14.309ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.001ns (0.330 - 0.331)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1269,40 +1333,42 @@ Slack:                  10.620ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_6 to gameLogic/M_playing_q
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_164
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.BQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_6
-    SLICE_X4Y36.D4       net (fanout=18)       1.597   M_first_q_0_6
-    SLICE_X4Y36.CMUX     Topdc                 0.456   gameLogic/Sh17882
-                                                       gameLogic/Sh17882_F
-                                                       gameLogic/Sh17882
-    SLICE_X3Y27.C4       net (fanout=1)        1.688   gameLogic/Sh17882
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X15Y30.B6      net (fanout=5)        0.973   gameLogic/Sh1788
-    SLICE_X15Y30.CLK     Tas                   0.373   gameLogic/M_playing_q
-                                                       gameLogic/M_playing_q_glue_set
-                                                       gameLogic/M_playing_q
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X6Y27.D1       net (fanout=19)       2.994   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X6Y27.D        Tilo                  0.235   gameLogic/Sh388055
+                                                       gameLogic/Sh388055
+    SLICE_X11Y26.A3      net (fanout=1)        0.904   gameLogic/Sh388055
+    SLICE_X11Y26.A       Tilo                  0.259   gameLogic/Sh388056
+                                                       gameLogic/Sh388057
+    SLICE_X15Y35.A3      net (fanout=1)        1.429   gameLogic/Sh388057
+    SLICE_X15Y35.A       Tilo                  0.259   gameLogic/Sh388044
+                                                       gameLogic/Sh388063
+    SLICE_X15Y49.C5      net (fanout=2)        1.313   gameLogic/Sh388063
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X10Y25.C5      net (fanout=17)       3.002   Sh3880
+    SLICE_X10Y25.C       Tilo                  0.235   M_patternNew_q[186]
+                                                       gameLogic/nextMap<100>111_6
+    SLICE_X4Y44.A4       net (fanout=20)       2.651   gameLogic/nextMap<100>1115
+    SLICE_X4Y44.CLK      Tas                   0.339   M_patternNew_q[167]
+                                                       gameLogic/nextMap<92>
+                                                       M_patternNew_q_164
     -------------------------------------------------  ---------------------------
-    Total                                      9.294ns (2.082ns logic, 7.212ns route)
-                                                       (22.4% logic, 77.6% route)
+    Total                                     14.309ns (2.016ns logic, 12.293ns route)
+                                                       (14.1% logic, 85.9% route)
 
 --------------------------------------------------------------------------------
-Slack:                  10.658ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               M_first_q_0_6 (FF)
-  Destination:          M_p2Score_q_2 (FF)
+Slack:                  5.657ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               gameLogic/M_p2PositionY_q_2_1 (FF)
+  Destination:          M_patternNew_q_68 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      9.251ns (Levels of Logic = 5)
-  Clock Path Skew:      -0.056ns (0.596 - 0.652)
+  Data Path Delay:      14.258ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.050ns (0.593 - 0.643)
   Source Clock:         clk_IBUF_BUFG rising at 0.000ns
   Destination Clock:    clk_IBUF_BUFG rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -1313,32 +1379,34 @@ Slack:                  10.658ns (requirement - (data path - clock path skew + u
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: M_first_q_0_6 to M_p2Score_q_2
+  Maximum Data Path at Slow Process Corner: gameLogic/M_p2PositionY_q_2_1 to M_patternNew_q_68
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X6Y25.BQ       Tcko                  0.476   M_first_q_0_8
-                                                       M_first_q_0_6
-    SLICE_X4Y33.C6       net (fanout=18)       1.598   M_first_q_0_6
-    SLICE_X4Y33.CMUX     Tilo                  0.430   matrixDisplay/Mmux_inputsToCircuit636
-                                                       gameLogic/Sh17881_G
-                                                       gameLogic/Sh17881
-    SLICE_X3Y27.C2       net (fanout=1)        1.445   gameLogic/Sh17881
-    SLICE_X3Y27.C        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh17885
-    SLICE_X3Y27.A2       net (fanout=1)        0.542   gameLogic/Sh17885
-    SLICE_X3Y27.A        Tilo                  0.259   gameLogic/Sh178810
-                                                       gameLogic/Sh178821
-    SLICE_X21Y25.A1      net (fanout=1)        2.412   gameLogic/Sh178821
-    SLICE_X21Y25.A       Tilo                  0.259   M_p2Score_q[2]
-                                                       gameLogic/Sh178885
-    SLICE_X21Y25.D4      net (fanout=5)        1.198   gameLogic/Sh1788
-    SLICE_X21Y25.CLK     Tas                   0.373   M_p2Score_q[2]
-                                                       gameLogic/Mmux_p2ScoreOut61
-                                                       M_p2Score_q_2
+    SLICE_X11Y41.AQ      Tcko                  0.430   gameLogic/M_p2PositionY_q_2_4
+                                                       gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D4       net (fanout=19)       3.447   gameLogic/M_p2PositionY_q_2_1
+    SLICE_X9Y25.D        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388014
+    SLICE_X9Y25.C5       net (fanout=1)        0.406   gameLogic/Sh388014
+    SLICE_X9Y25.C        Tilo                  0.259   gameLogic/Sh388014
+                                                       gameLogic/Sh388015
+    SLICE_X7Y37.A2       net (fanout=1)        1.561   gameLogic/Sh388015
+    SLICE_X7Y37.A        Tilo                  0.259   gameLogic/Sh388018
+                                                       gameLogic/Sh388021
+    SLICE_X15Y49.C6      net (fanout=2)        1.550   gameLogic/Sh388021
+    SLICE_X15Y49.C       Tilo                  0.259   M_playing_q
+                                                       gameLogic/Sh388085
+    SLICE_X6Y26.D3       net (fanout=17)       2.780   Sh3880
+    SLICE_X6Y26.D        Tilo                  0.235   M_patternNew_q[106]
+                                                       gameLogic/nextMap<100>111_8
+    SLICE_X14Y42.A1      net (fanout=20)       2.464   gameLogic/nextMap<100>1117
+    SLICE_X14Y42.CLK     Tas                   0.349   M_patternNew_q[71]
+                                                       gameLogic/nextMap<188>
+                                                       M_patternNew_q_68
     -------------------------------------------------  ---------------------------
-    Total                                      9.251ns (2.056ns logic, 7.195ns route)
-                                                       (22.2% logic, 77.8% route)
+    Total                                     14.258ns (2.050ns logic, 12.208ns route)
+                                                       (14.4% logic, 85.6% route)
 
 --------------------------------------------------------------------------------
 
@@ -1357,7 +1425,7 @@ Slack: 18.601ns (period - min period limit)
   Min period limit: 1.399ns (714.796MHz) (Tcp)
   Physical resource: gameLogic/levelButtonState/button_cond/M_sync_out/CLK
   Logical resource: gameLogic/levelButtonState/button_cond/sync/Mshreg_M_pipe_q_1/CLK
-  Location pin: SLICE_X16Y57.CLK
+  Location pin: SLICE_X16Y61.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
@@ -1404,185 +1472,185 @@ Slack: 19.520ns (period - min period limit)
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[43]/CLK
-  Logical resource: M_patternNew_q_42/CK
-  Location pin: SLICE_X0Y19.CLK
+  Physical resource: M_patternNew_q[249]/CLK
+  Logical resource: M_patternNew_q_248/CK
+  Location pin: SLICE_X4Y29.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[43]/CLK
-  Logical resource: M_patternNew_q_43/CK
-  Location pin: SLICE_X0Y19.CLK
+  Physical resource: M_patternNew_q[249]/CLK
+  Logical resource: M_patternNew_q_249/CK
+  Location pin: SLICE_X4Y29.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[239]/CLK
+  Physical resource: M_patternNew_q[240]/CLK
+  Logical resource: M_patternNew_q_237/CK
+  Location pin: SLICE_X4Y34.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[240]/CLK
   Logical resource: M_patternNew_q_238/CK
-  Location pin: SLICE_X0Y27.CLK
+  Location pin: SLICE_X4Y34.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[239]/CLK
+  Physical resource: M_patternNew_q[240]/CLK
   Logical resource: M_patternNew_q_239/CK
-  Location pin: SLICE_X0Y27.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[19]/CLK
-  Logical resource: M_patternNew_q_18/CK
-  Location pin: SLICE_X0Y32.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[19]/CLK
-  Logical resource: M_patternNew_q_19/CK
-  Location pin: SLICE_X0Y32.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[227]/CLK
-  Logical resource: M_patternNew_q_226/CK
-  Location pin: SLICE_X4Y18.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[227]/CLK
-  Logical resource: M_patternNew_q_227/CK
-  Location pin: SLICE_X4Y18.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[95]/CLK
-  Logical resource: M_patternNew_q_94/CK
-  Location pin: SLICE_X4Y21.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[95]/CLK
-  Logical resource: M_patternNew_q_95/CK
-  Location pin: SLICE_X4Y21.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_4/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_1/CK
-  Location pin: SLICE_X4Y22.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_4/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_2/CK
-  Location pin: SLICE_X4Y22.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_4/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_3/CK
-  Location pin: SLICE_X4Y22.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_4/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_4/CK
-  Location pin: SLICE_X4Y22.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_7/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_5/CK
-  Location pin: SLICE_X4Y24.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_7/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_6/CK
-  Location pin: SLICE_X4Y24.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: gameLogic/M_p1PositionY_q_3_7/CLK
-  Logical resource: gameLogic/M_p1PositionY_q_3_7/CK
-  Location pin: SLICE_X4Y24.CLK
-  Clock network: clk_IBUF_BUFG
---------------------------------------------------------------------------------
-Slack: 19.520ns (period - min period limit)
-  Period: 20.000ns
-  Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[255]/CLK
-  Logical resource: M_patternNew_q_254/CK
   Location pin: SLICE_X4Y34.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[255]/CLK
-  Logical resource: M_patternNew_q_255/CK
+  Physical resource: M_patternNew_q[240]/CLK
+  Logical resource: M_patternNew_q_240/CK
   Location pin: SLICE_X4Y34.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[89]/CLK
-  Logical resource: M_patternNew_q_88/CK
-  Location pin: SLICE_X8Y16.CLK
+  Physical resource: M_patternNew_q[143]/CLK
+  Logical resource: M_patternNew_q_140/CK
+  Location pin: SLICE_X4Y43.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[89]/CLK
-  Logical resource: M_patternNew_q_89/CK
-  Location pin: SLICE_X8Y16.CLK
+  Physical resource: M_patternNew_q[143]/CLK
+  Logical resource: M_patternNew_q_141/CK
+  Location pin: SLICE_X4Y43.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[81]/CLK
-  Logical resource: M_patternNew_q_80/CK
-  Location pin: SLICE_X8Y17.CLK
+  Physical resource: M_patternNew_q[143]/CLK
+  Logical resource: M_patternNew_q_142/CK
+  Location pin: SLICE_X4Y43.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: M_patternNew_q[81]/CLK
-  Logical resource: M_patternNew_q_81/CK
-  Location pin: SLICE_X8Y17.CLK
+  Physical resource: M_patternNew_q[143]/CLK
+  Logical resource: M_patternNew_q_143/CK
+  Location pin: SLICE_X4Y43.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[167]/CLK
+  Logical resource: M_patternNew_q_164/CK
+  Location pin: SLICE_X4Y44.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[167]/CLK
+  Logical resource: M_patternNew_q_165/CK
+  Location pin: SLICE_X4Y44.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[167]/CLK
+  Logical resource: M_patternNew_q_166/CK
+  Location pin: SLICE_X4Y44.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[167]/CLK
+  Logical resource: M_patternNew_q_167/CK
+  Location pin: SLICE_X4Y44.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[47]/CLK
+  Logical resource: M_patternNew_q_44/CK
+  Location pin: SLICE_X8Y24.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[47]/CLK
+  Logical resource: M_patternNew_q_45/CK
+  Location pin: SLICE_X8Y24.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[47]/CLK
+  Logical resource: M_patternNew_q_46/CK
+  Location pin: SLICE_X8Y24.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: M_patternNew_q[47]/CLK
+  Logical resource: M_patternNew_q_47/CK
+  Location pin: SLICE_X8Y24.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: gameLogic/M_p1PositionY_q_2_4/CLK
+  Logical resource: gameLogic/M_p1PositionY_q_2_1/CK
+  Location pin: SLICE_X8Y30.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: gameLogic/M_p1PositionY_q_2_4/CLK
+  Logical resource: gameLogic/M_p1PositionY_q_2_2/CK
+  Location pin: SLICE_X8Y30.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: gameLogic/M_p1PositionY_q_2_4/CLK
+  Logical resource: gameLogic/M_p1PositionY_q_2_3/CK
+  Location pin: SLICE_X8Y30.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: gameLogic/M_p1PositionY_q_2_4/CLK
+  Logical resource: gameLogic/M_p1PositionY_q_2_4/CK
+  Location pin: SLICE_X8Y30.CLK
+  Clock network: clk_IBUF_BUFG
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: gameLogic/M_p1PositionY_q_1_2/CLK
+  Logical resource: gameLogic/M_p1PositionY_q_1_1/CK
+  Location pin: SLICE_X8Y31.CLK
   Clock network: clk_IBUF_BUFG
 --------------------------------------------------------------------------------
 
@@ -1599,7 +1667,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |   10.046|         |         |         |
+clk            |   14.981|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -1608,23 +1676,23 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 52209 paths, 0 nets, and 5500 connections
+Constraints cover 313692 paths, 0 nets, and 5427 connections
 
 Design statistics:
-   Minimum period:  10.046ns{1}   (Maximum frequency:  99.542MHz)
+   Minimum period:  14.981ns{1}   (Maximum frequency:  66.751MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Wed Dec 07 21:47:06 2016 
+Analysis completed Fri Dec 09 05:18:01 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 243 MB
+Peak Memory Usage: 238 MB
 
 
 

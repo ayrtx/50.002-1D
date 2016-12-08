@@ -26,7 +26,8 @@ module mojo_top (
     output inputsToCircuit[8], // output to physical led matrix
     output levelLED[3] // output to LED to display current level
   ) {
-  
+  alu alu;
+  sig initialCheck[1];
   sig rst;                  // reset signal
   sig pattern[16][16];
   //sig switch;
@@ -38,14 +39,17 @@ module mojo_top (
       matrixDisplay matrixDisplay;
       gameLogic gameLogic;
       numbersDisplayMain numbersDisplayMain;
+      scoreMem scoreMem;
       dff first[1];
       dff patternNew[16][16];
-      dff p1Score[4];
-      dff p2Score[4];
       }
   }
   
   always {
+    alu.a = first.q;
+    alu.b = b00000001;
+    alu.alufn = b1101000; // use alu less than
+    initialCheck = alu.out[0];
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     //switch = b1;
@@ -77,7 +81,7 @@ module mojo_top (
                c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-    if (first.q == b0) { // Intro page: Set all the values to default
+    if (initialCheck == b1) { // Intro page: Set all the values to default
       gameLogic.levelButton = levelButton;
       gameLogic.p1ButtonInput = b1111;
       gameLogic.p2ButtonInput = b1111;
@@ -85,10 +89,6 @@ module mojo_top (
       gameLogic.p2Ready = p2Ready;
       gameLogic.currentMap = pattern;
       patternNew.d = gameLogic.nextMap;
-      gameLogic.p1ScoreIn = b0000;
-      gameLogic.p2ScoreIn = b0000;
-      p1Score.d = gameLogic.p1ScoreOut;
-      p2Score.d = gameLogic.p2ScoreOut;
       levelLED = b001;
       first.d = b1; // Immediately change to the next state. 
     }
@@ -100,17 +100,14 @@ module mojo_top (
       gameLogic.p2Ready = p2Ready;
       gameLogic.currentMap = patternNew.q;
       patternNew.d = gameLogic.nextMap;
-      gameLogic.p1ScoreIn = p1Score.q;
-      gameLogic.p2ScoreIn = p2Score.q;
-      p1Score.d = gameLogic.p1ScoreOut;
-      p2Score.d = gameLogic.p2ScoreOut;
       levelLED = gameLogic.levelLED;
     }
-    
+    scoreMem.p1Lost = gameLogic.p1Lost;
+    scoreMem.p2Lost = gameLogic.p2Lost;
     matrixDisplay.ledArray = patternNew.q; // send map to be processed by matrixDisplay
     inputsToCircuit = matrixDisplay.inputsToCircuit; // retrieve pin output to send to physical ledMatrix
-    numbersDisplayMain.p1Score = p1Score.q; // display p1Score
-    numbersDisplayMain.p2Score = p2Score.q; // display p2Score
+    numbersDisplayMain.p1Score = scoreMem.p1Score; // display p1Score
+    numbersDisplayMain.p2Score = scoreMem.p2Score; // display p2Score
     segmentPins = numbersDisplayMain.segmentPins; 
     digitPins = numbersDisplayMain.digitPins;
     

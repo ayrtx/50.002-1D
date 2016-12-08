@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module matrixDisplay_2 (
+module matrixDisplay_3 (
     input clk,
     input rst,
     input [255:0] ledArray,
@@ -12,6 +12,23 @@ module matrixDisplay_2 (
   );
   
   
+  
+  wire [1-1:0] M_alu_z;
+  wire [1-1:0] M_alu_v;
+  wire [1-1:0] M_alu_n;
+  wire [8-1:0] M_alu_out;
+  reg [6-1:0] M_alu_alufn;
+  reg [8-1:0] M_alu_a;
+  reg [8-1:0] M_alu_b;
+  alu_1 alu (
+    .alufn(M_alu_alufn),
+    .a(M_alu_a),
+    .b(M_alu_b),
+    .z(M_alu_z),
+    .v(M_alu_v),
+    .n(M_alu_n),
+    .out(M_alu_out)
+  );
   
   localparam ONE_state = 2'd0;
   localparam TWO_state = 2'd1;
@@ -31,6 +48,9 @@ module matrixDisplay_2 (
     M_k_d = M_k_q;
     M_i_d = M_i_q;
     
+    M_alu_a = 8'h00;
+    M_alu_b = 8'h00;
+    M_alu_alufn = 6'h00;
     inputsToCircuit = 8'h00;
     
     case (M_state_q)
@@ -75,7 +95,10 @@ module matrixDisplay_2 (
           if (M_k_q == 4'hf) begin
             M_state_d = START_state;
           end else begin
-            M_i_d = M_i_q - 1'h1;
+            M_alu_alufn = 6'h01;
+            M_alu_a = M_i_q;
+            M_alu_b = 1'h1;
+            M_i_d = M_alu_out;
             M_k_d = M_k_q + 1'h1;
             M_state_d = ONE_state;
           end
@@ -93,15 +116,6 @@ module matrixDisplay_2 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_state_q <= 2'h3;
-    end else begin
-      M_state_q <= M_state_d;
-    end
-  end
-  
-  
-  always @(posedge clk) begin
-    if (rst == 1'b1) begin
       M_i_q <= 1'h0;
       M_j_q <= 1'h0;
       M_k_q <= 1'h0;
@@ -111,6 +125,15 @@ module matrixDisplay_2 (
       M_j_q <= M_j_d;
       M_k_q <= M_k_d;
       M_time_q <= M_time_d;
+    end
+  end
+  
+  
+  always @(posedge clk) begin
+    if (rst == 1'b1) begin
+      M_state_q <= 2'h3;
+    end else begin
+      M_state_q <= M_state_d;
     end
   end
   

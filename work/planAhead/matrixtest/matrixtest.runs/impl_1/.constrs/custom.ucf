@@ -75,3 +75,10 @@ NET "digitPins[2]" LOC = P95;
 NET "digitPins[2]" IOSTANDARD = LVTTL;
 NET "digitPins[3]" LOC = P98;
 NET "digitPins[3]" IOSTANDARD = LVTTL;
+
+NET "levelLED[0]" LOC = P120;
+NET "levelLED[0]" IOSTANDARD = LVTTL;
+NET "levelLED[1]" LOC = P118;
+NET "levelLED[1]" IOSTANDARD = LVTTL;
+NET "levelLED[2]" LOC = P116;
+NET "levelLED[2]" IOSTANDARD = LVTTL;

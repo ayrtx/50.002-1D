@@ -1,0 +1,37 @@
+module scoreMem (
+    input clk,
+    input rst,
+    input p1Lost[1],
+    input p2Lost[1],
+    output p1Score[4],
+    output p2Score[4]
+  ) {
+    alu alu;
+    dff curp1Score[4](.clk(clk), .rst(rst));
+    dff curp2Score[4](.clk(clk), .rst(rst));
+  always {
+    alu.alufn = b00000;
+    alu.a = b00000000;
+    alu.b = b00000000;     
+    if (p1Lost == b1 && p2Lost == b1){ // draw
+    }
+    else if (p1Lost == b1){ // p1 lost
+      if(curp2Score.q == b1001) curp2Score.d = b0000; // max score is 9, reset to 0 if max score is reached
+      else {
+        alu.alufn = b00000; // use alu addition 
+        alu.a = curp2Score.q;
+        alu.b = b0001;
+        curp2Score.d = alu.out;} // else +1 to p2 score
+    }
+    else if (p2Lost == b1){ // p2 lost
+      if(curp1Score.q == b1001) curp1Score.d = b0000; // max score is 9, reset to 0 if max score is reached
+      else {
+        alu.alufn = b00000; // use alu addition 
+        alu.a = curp1Score.q;
+        alu.b = b0001;
+        curp1Score.d = alu.out;} // else +1 to p1 score
+    }
+    p1Score = curp1Score.q;
+    p2Score = curp2Score.q;
+  }
+}
