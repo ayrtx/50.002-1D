@@ -13,84 +13,91 @@ module gameLogic (
     output p1ScoreOut[4],
     output p2ScoreOut[4],
     output p1Lost[1],
-    output p2Lost[1]
-
+    output p2Lost[1],
+    output levelLED[3]
   ) {
     .clk(clk){
-      .rst(rst){
+	  .rst(rst){
         levelButtonState levelButtonState;
-        dff levelButtonStatePrev;
         fsm playing(.clk(clk), #INIT(NOT_PLAYING)) = {NOT_PLAYING, PLAYING};
         fsm p1State(.clk(clk), #INIT(R)) = {U, D, L, R};
         fsm p2State(.clk(clk), #INIT(U)) = {U, D, L, R};
-        dff timeToUpdateMap[26]; // When this value reaches difficultyLevel, update the map
+        dff timeToUpdateMap[26]; // When this value reaches level, update the map
         dff p1PositionX[4]; // Indicates [i][j] position of p1
         dff p1PositionY[4]; // Indicates [i][j] position of p1
         dff p2PositionX[4]; // Indicates [i][j] position of p1
         dff p2PositionY[4]; // Indicates [i][j] position of p2
-        dff level[26] (#INIT(b10111110101111000010000000)); // indicates difficulty level. Higher is easier
-      }
+        dff level[26] (#INIT(b10111110101111000010000000));  // indicates the amount of time before the player moves in the matrix, the larger the value the slower it moves
+        }
     }
-
   always {
     levelButtonState.button = ~levelButton;
     p1ScoreOut = p1ScoreIn;
     p2ScoreOut = p2ScoreIn;
     p1Lost = b0;
     p2Lost = b0;
-    levelButtonStatePrev.d = levelButtonState.count;
+	//light up LED corresponding to level
+    if(level.q == b10111110101111000010000000){
+       levelLED = b001;
+            }
+    else if(level.q == b01011111010111100001000000){
+       levelLED = b010;
+            }
+    else{
+       levelLED = b100;
+            }
+    nextMap = // initialize map. 1 indicates off, while 0 indicated on
+        {c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+         c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
+    case(playing.q){
+      playing.NOT_PLAYING: //playing
+	    p1PositionX.d = b1110;
+        p1PositionY.d = b0111;
+        p2PositionX.d = b0001;
+        p2PositionY.d = b0111;
+        timeToUpdateMap.d = b00000000000000000000000000;
+        p1State.d = p1State.R;
+        p2State.d = p2State.L;
 
-    // toggle the difficulty level
-    if (levelButtonStatePrev.q == b0 && levelButtonState.count == b1) {
-      if(level.q == b10111110101111000010000000) {
-        level.d = b01011111010111100001000000;
-      }
-      else if(level.q == b01011111010111100001000000) {
-        level.d = b00010011000100101101000000;
-     }
-      else if(level.q == b00010011000100101101000000) {
-        level.d = b10111110101111000010000000;
-      }
-    }
-    
-    if (playing.q == playing.NOT_PLAYING) {
-        nextMap = currentMap; // map remains the same
-        if (p1Ready == b0 && p2Ready == b0) { // only change state to playing if p1 and p2 are ready
+		if (p1Ready == b0 && p2Ready == b0){ // only change state to playing if p1 and p2 are ready
           playing.d = playing.PLAYING; // change state to playing
-          nextMap = // initialize map. 1 indicates off, while 0 indicated on
-              {c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-               c{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-          p1PositionX.d = b1110;
-          p1PositionY.d = b0111;
-          p2PositionX.d = b0001;
-          p2PositionY.d = b0111;
-          timeToUpdateMap.d = b00000000000000000000000000;
-          p1State.d = p1State.R;
-          p2State.d = p2State.L;
+		 }
+		 
+		// toggle the difficulty level
+        if (levelButtonState.count == b1){
+          if(level.q == b10111110101111000010000000){
+            level.d = b01011111010111100001000000;
+          }
+          else if(level.q == b01011111010111100001000000){
+            level.d = b00010011000100101101000000;
+          }
+          else if(level.q == b00010011000100101101000000){
+            level.d = b10111110101111000010000000;
+          }
         }
-    }
-    else { // means we are playing
-        nextMap = currentMap; // update nextMap
-
-        if (timeToUpdateMap.q < level.q - b1) { // map is the same, just change the player states if possible
-          timeToUpdateMap.d = timeToUpdateMap.q + b1; // increase timer
+	  playing.PLAYING: // not playing
+        nextMap = currentMap;  // update nextMap
+        timeToUpdateMap.d = timeToUpdateMap.q + b1; // increase timer
+        if (timeToUpdateMap.q < level.q - b1) {  // map is the same, just change the player states if possible
+          nextMap = currentMap; // nextMap doesn't change
           // player input is as follows: 
           // format is UP,DOWN,LEFT,RIGHT
           // so b1011 means that the player pressed DOWN
+		
           if      (p1ButtonInput[3] == b0) {p1State.d = p1State.U;}
           else if (p1ButtonInput[2] == b0) {p1State.d = p1State.D;}
           else if (p1ButtonInput[1] == b0) {p1State.d = p1State.L;}
@@ -103,120 +110,180 @@ module gameLogic (
           else if (p2ButtonInput[0] == b0) {p2State.d = p2State.R;}
           else                             {p2State.d = p2State.q;}
         }
-
-        else if (timeToUpdateMap.q == level.q - b1) { // update player positions
-          timeToUpdateMap.d = timeToUpdateMap.q + b1; // increase timer
-
-          // get the new position of p1 and check if they fail the boundary requirements
+		  
+        else if (timeToUpdateMap.q == level.q - b1){ // update player positions
+		  // get the new position of p1 and check if they fail the boundary requirements	  
           case (p1State.q) {
-            p1State.U: // player going up
-              p1PositionY.d = p1PositionY.q + b1; // increase boundary by 1
+	        p1State.U: // player going up
+              p1PositionY.d = p1PositionY.q + b1; // increase Y position by 1
               if (p1PositionY.q == b1111) { // means p1 goes past the top boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p2ScoreOut = p2ScoreIn + b1; // increase p2 score by 1
-                if (p2ScoreIn == b1001) {p2ScoreOut = b0000;} // max Score is 9, so reset
-                p1Lost = b1; // indicate that p1 has lost
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p2ScoreIn == b1001){ // max score is 9, so reset
+                  p2ScoreOut = b0000;
+                }
+                else{ // else increase p2 score by 1
+                  p2ScoreOut = p2ScoreIn + b1;
+                }
+    			p1Lost = b1; // indicate that p1 has lost
               }
+				
             p1State.D: // player going down
-              p1PositionY.d = p1PositionY.q - b1; // increase boundary by 1
-              if (p1PositionY.q == b1111) { // means p1 goes past the bottom boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p2ScoreOut = p2ScoreIn + b1; // increase p2 score by 1
-                if (p2ScoreIn == b1001) {p2ScoreOut = b0000;} // max Score is 9, so reset
+              p1PositionY.d = p1PositionY.q - b1; // decrease Y position by 1
+              if (p1PositionY.q == b0000) { // means p1 goes past the bottom boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p2ScoreIn == b1001){ //max score is 9, so reset
+                  p2ScoreOut = b0000;
+                }
+                else{ // else increase p2 score by 1
+                  p2ScoreOut = p2ScoreIn + b1;
+                }
                 p1Lost = b1; // indicate that p1 has lost
               }
-            p1State.L: // player going to the left
-              p1PositionX.d = p1PositionX.q + b1; // increase boundary by 1
-              if (p1PositionY.q == b1111) { // means p1 goes past the left boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p2ScoreOut = p2ScoreIn + b1; // increase p2 score by 1
-                if (p2ScoreIn == b1001) {p2ScoreOut = b0000;} // max Score is 9, so reset
-                p1Lost = b1; // indicate that p1 has lost
+			  
+            p1State.L: // player going left
+              p1PositionX.d = p1PositionX.q + b1; // increase X position by 1
+              if (p1PositionX.q == b1111) {  // means p1 goes past the left boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p2ScoreIn == b1001){  // max score is 9, so reset
+                  p2ScoreOut = b0000;
+                }
+                else{ // else increase p2 score by 1
+                  p2ScoreOut = p2ScoreIn + b1;
+                }
+                p1Lost = b1; // indicate p1 has lost
               }
-            p1State.R: // player going to the right
-              p1PositionX.d = p1PositionX.q - b1; // increase boundary by 1
-              if (p1PositionY.q == b1111) { // means p1 goes past the right boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p2ScoreOut = p2ScoreIn + b1; // increase p2 score by 1
-                if (p2ScoreIn == b1001) {p2ScoreOut = b0000;} // max Score is 9, so reset
-                p1Lost = b1; // indicate that p1 has lost
+			  
+            p1State.R: // player going right
+              p1PositionX.d = p1PositionX.q - b1; //decrease X position by 1
+              if (p1PositionX.q == b0000) { // means p1 goes past the right boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p2ScoreIn == b1001){ // max score is 9, so reset
+                  p2ScoreOut = b0000;
+                }
+                else{ // else increase p2 score by 1
+                  p2ScoreOut = p2ScoreIn + b1;
+                }
+                p1Lost = b1; // indicate p1 has lost
               }
           }
-        
         
           // get the new position of p2 and check if they fail the boundary requirements
           case (p2State.q) {
             p2State.U: // player going up
-              p2PositionY.d = p2PositionY.q + b1; // increase boundary by 1
+              p2PositionY.d = p2PositionY.q + b1; // increase Y postion by 1
               if (p2PositionY.q == b1111) { // means p2 goes past the top boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p1ScoreOut = p1ScoreIn + b1; // increase p1 score by 1
-                if (p1ScoreIn == b1001) {p1ScoreOut = b0000;} // max Score is 9, so reset
-                p2Lost = b1; // indicate that p2 has lost
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p1ScoreIn == b1001){ // max score is 9, so reset
+                  p1ScoreOut = b0000;
+                }
+                else{ // else increase p1 score by 1
+                  p1ScoreOut = p1ScoreIn + b1;
+                }
+                p2Lost = b1;  // indicate p2 has lost
               }
+			  
             p2State.D: // player going down
-              p2PositionY.d = p2PositionY.q - b1; // increase boundary by 1
-              if (p2PositionY.q == b1111) { // means p2 goes past the bottom boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p1ScoreOut = p1ScoreIn + b1; // increase p1 score by 1
-                if (p1ScoreIn == b1001) {p1ScoreOut = b0000;} // max Score is 9, so reset
-                p2Lost = b1; // indicate that p2 has lost
-              }
-            p2State.L: // player going to the left
-              p2PositionX.d = p2PositionX.q + b1; // increase boundary by 1
-              if (p2PositionY.q == b1111) { // means p2 goes past the left boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p1ScoreOut = p1ScoreIn + b1; // increase p1 score by 1
-                if (p1ScoreIn == b1001) {p1ScoreOut = b0000;} // max Score is 9, so reset
-                p2Lost = b1; // indicate that p2 has lost
-              }
-            p2State.R: // player going to the right
-              p2PositionX.d = p2PositionX.q - b1; // increase boundary by 1
-              if (p2PositionY.q == b1111) { // means p2 goes past the right boundary
-                playing.d = playing.NOT_PLAYING; // let the screen remain as it is
-                p1ScoreOut = p1ScoreIn + b1; // increase p1 score by 1
-                if (p1ScoreIn == b1001) {p1ScoreOut = b0000;} // max Score is 9, so reset
-                p2Lost = b1; // indicate that p2 has lost
-              }
+              p2PositionY.d = p2PositionY.q - b1; // decrease Y postion by 1
+              if (p2PositionY.q == b0000) { // means p2 goes past the bottom boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p1ScoreIn == b1001){ // max score is 9, so reset
+                  p1ScoreOut = b0000;
+                }
+                else{ // else increase p1 score by 1
+                  p1ScoreOut = p1ScoreIn + b1;
+                }
+                p2Lost = b1; // indicate p2 has lost
+            }
+			
+            p2State.L: // player going left
+              p2PositionX.d = p2PositionX.q + b1; // increase X position by 1
+              if (p2PositionX.q == b1111) { // means p2 goes past the left boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p1ScoreIn == b1001){ // max score is 9, so reset
+                  p1ScoreOut = b0000;
+                }
+                else{ // else increase p1 score by 1
+                  p1ScoreOut = p1ScoreIn + b1;
+                }
+                p2Lost = b1; // indicate p2 has lost
+            }
+			
+            p2State.R: // player going right
+              p2PositionX.d = p2PositionX.q - b1; // decrease X position by 1
+              if (p2PositionX.q == b0000) { // means p2 goes past the right boundary
+                playing.d = playing.NOT_PLAYING; // end the round
+                if(p1ScoreIn == b1001){ // max score is 9, so reset
+                  p1ScoreOut = b0000;
+                }
+                else{ // else increase p1 score by 1
+                  p1ScoreOut = p1ScoreIn + b1;
+                }
+                p2Lost = b1; // indicate p2 has lost
+            }
           }
         }
-
-        else { // check for win/lose/draw and update map positions
-          timeToUpdateMap.d = b00000000000000000000000000; // reset timer to 0
-          nextMap[p1PositionY.q][p1PositionX.q] = 0; // update p1 map position
-          nextMap[p2PositionY.q][p2PositionX.q] = 0; // update p2 map position
-
-          if (p1PositionX.q == p2PositionX.q && p1PositionY.q == p2PositionY.q) { // check for draw (both at same location)
-            playing.d = playing.NOT_PLAYING;
-            if (p1ScoreIn == b1001) {p1ScoreOut = b0000;}
-            else {p1ScoreOut = p1ScoreIn + b1;}
-            if (p2ScoreIn == b1001) {p2ScoreOut = b0000;}
-            else {p2ScoreOut = p2ScoreIn + b1;}
-            p1Lost = b1;
-            p2Lost = b1;            
-          }
-          else if (currentMap[p1PositionY.q][p1PositionX.q] == 0 && currentMap[p2PositionY.q][p2PositionX.q] == 0) { // check for draw (both lose at the same time
-            playing.d = playing.NOT_PLAYING;
-            if (p1ScoreIn == b1001) {p1ScoreOut = b0000;}
-            else {p1ScoreOut = p1ScoreIn + b1;}
-            if (p2ScoreIn == b1001) {p2ScoreOut = b0000;}
-            else {p2ScoreOut = p2ScoreIn + b1;}
-            p1Lost = b1;
-            p2Lost = b1;
-          }
-          else if (currentMap[p1PositionY.q][p1PositionX.q] == 0) {
-            playing.d = playing.NOT_PLAYING;
-            if(p2ScoreIn == b1001){p2ScoreOut = b0000;}
-            else {p2ScoreOut = p2ScoreIn + b1;}
-            p1Lost = b1;
-          }
-          else if (currentMap[p2PositionY.q][p2PositionX.q] == 0) {
-            playing.d = playing.NOT_PLAYING;
-            if (p1ScoreIn == b1001) {p1ScoreOut = b0000;}
-            else {p1ScoreOut = p1ScoreIn + b1;}
-            p2Lost = b1;
-          }
-        }
-    }
+		
+		else if (timeToUpdateMap.q == level.q){
+          timeToUpdateMap.d = b00000000000000000000000000; reset timer to 0;
+            if (p1PositionX.q == p2PositionX.q && p1PositionY.q == p2PositionY.q){
+              playing.d = playing.NOT_PLAYING;
+              if(p1ScoreIn == b1001){
+                p1ScoreOut = b0000;
+              }
+              else{
+                p1ScoreOut = p1ScoreIn + b1;
+              }
+              if(p2ScoreIn == b1001){
+                p2ScoreOut = b0000;
+              }
+              else{
+                p2ScoreOut = p2ScoreIn + b1;
+              }
+              p1Lost = b1;
+              p2Lost = b1;            
+            }
+            else if (currentMap[p1PositionY.q][p1PositionX.q] == 0 && currentMap[p2PositionY.q][p2PositionX.q] == 0){
+              playing.d = playing.NOT_PLAYING;
+              if(p1ScoreIn == b1001){
+                p1ScoreOut = b0000;
+              }
+              else{
+                p1ScoreOut = p1ScoreIn + b1;
+              }
+              if(p2ScoreIn == b1001){
+                p2ScoreOut = b0000;
+              }
+              else{
+                p2ScoreOut = p2ScoreIn + b1;
+              }
+              p1Lost = b1;
+              p2Lost = b1;
+            }
+            else if (currentMap[p1PositionY.q][p1PositionX.q] == 0){
+              playing.d = playing.NOT_PLAYING;
+              if(p2ScoreIn == b1001){
+                p2ScoreOut = b0000;
+              }
+              else{
+                p2ScoreOut = p2ScoreIn + b1;
+              }
+              p1Lost = b1;
+            }
+            else if (currentMap[p2PositionY.q][p2PositionX.q] == 0){
+              playing.d = playing.NOT_PLAYING;
+              if(p1ScoreIn == b1001){
+                p1ScoreOut = b0000;
+              }
+              else{
+                p1ScoreOut = p1ScoreIn + b1;
+              }
+              p2Lost = b1;
+            }
+            else{
+              nextMap[p1PositionY.q][p1PositionX.q] = 0;
+              nextMap[p2PositionY.q][p2PositionX.q] = 0;
+			}
+	    }
+    }  
   }
 }
